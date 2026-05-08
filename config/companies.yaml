@@ -1,0 +1,106 @@
+# GreenLens company registry
+#
+# Ten oil and gas majors. The 2025 sustainability report URL covers calendar
+# year 2024 data for most companies (the report is published the following
+# year). Verify each URL is live before running the ingestion pipeline.
+#
+# Fields:
+#   id              short identifier, used in filenames and the frontend
+#   name            display name
+#   ticker          stock ticker
+#   country         primary listing country
+#   report_url      direct link to the most recent sustainability report PDF
+#   report_year     calendar year of operations covered (not publication year)
+#   keywords        terms used to query news and NGO sources
+#   aliases         alternate names that appear in news (legal name, brands)
+
+companies:
+  - id: bp
+    name: BP
+    ticker: BP
+    country: UK
+    report_url: https://www.bp.com/content/dam/bp/business-sites/en/global/corporate/pdfs/sustainability/group-reports/bp-sustainability-report-2025.pdf
+    report_year: 2025
+    keywords: [bp, "bp plc", "british petroleum"]
+    aliases: ["BP p.l.c."]
+
+  - id: shell
+    name: Shell
+    ticker: SHEL
+    country: UK
+    report_url: https://www.shell.com/sustainability/reporting-centre/_jcr_content/root/main/section_597740108/promo.multi.stream/1774544186011/5727c329a58b5eb7a54442c0a03f562a5aef1159/shell-annual-report-2025-interactive.pdf
+    report_year: 2025
+    keywords: [shell, "shell plc"]
+    aliases: ["Royal Dutch Shell"]
+
+  - id: exxon
+    name: ExxonMobil
+    ticker: XOM
+    country: US
+    report_url: https://corporate.exxonmobil.com/-/media/global/files/sustainability-report/2024/sustainability-report.pdf
+    report_year: 2025
+    keywords: [exxon, exxonmobil, "exxon mobil"]
+    aliases: ["Exxon Mobil Corporation"]
+
+  - id: chevron
+    name: Chevron
+    ticker: CVX
+    country: US
+    report_url: https://www.chevron.com/newsroom/media/publications/corporate-sustainability-highlights
+    report_year: 2024
+    keywords: [chevron]
+    aliases: ["Chevron Corporation"]
+
+  - id: totalenergies
+    name: TotalEnergies
+    ticker: TTE
+    country: France
+    report_url: https://totalenergies.com/system/files/documents/totalenergies_universal-registration-document-2025_2026_en.pdf
+    report_year: 2025
+    keywords: [totalenergies, total]
+    aliases: ["Total SE", "Total Energies"]
+
+  - id: equinor
+    name: Equinor
+    ticker: EQNR
+    country: Norway
+    report_url: https://cdn.equinor.com/files/h61q9gi9/global/9b3eac2a01f1ce70efa5c751106472c1a59a0ee3.pdf?2025-annual-report-equinor.pdf
+    report_year: 2025
+    keywords: [equinor]
+    aliases: ["Equinor ASA", "Statoil"]
+
+  - id: eni
+    name: Eni
+    ticker: E
+    country: Italy
+    report_url: https://www.eni.com/content/dam/enicom/documents/eng/reports/2025/ar-2025/Annual-Report-2025.pdf
+    report_year: 2025
+    keywords: [eni, "eni s.p.a."]
+    aliases: ["Eni SpA"]
+
+  - id: conoco
+    name: ConocoPhillips
+    ticker: COP
+    country: US
+    report_url: https://static.conocophillips.com/files/resources/2025-conocophillips-annual-report.pdf
+    report_year: 2025
+    keywords: [conocophillips, conoco]
+    aliases: []
+
+  - id: occidental
+    name: Occidental Petroleum
+    ticker: OXY
+    country: US
+    report_url: https://www.oxy.com/siteassets/documents/publications/2025-sustainability-report-web.pdf
+    report_year: 2025
+    keywords: [occidental, "occidental petroleum", oxy]
+    aliases: ["Occidental Petroleum Corporation"]
+
+  - id: repsol
+    name: Repsol
+    ticker: REP
+    country: Spain
+    report_url: https://www.repsol.com/content/dam/repsol-corporate/en_gb/accionistas-e-inversores/informes-anuales/2025/consolidated-management-report-2025.pdf
+    report_year: 2025
+    keywords: [repsol]
+    aliases: ["Repsol S.A."]

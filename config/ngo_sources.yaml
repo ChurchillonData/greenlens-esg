@@ -1,0 +1,52 @@
+# Curated NGO press releases relevant to oil and gas greenwashing.
+#
+# Hand-picked rather than scraped. Quality over quantity.
+# Add or remove entries here, then re-run fetch_ngo.py.
+
+clientearth:
+  - title: "Fossil fuel advertising misleading on climate: lawyers"
+    url: https://www.clientearth.org/latest/press-office/press-releases/fossil-fuel-advertising-misleading-on-climate-lawyers/
+    date: "2022-04-21"
+    companies: [bp, shell, exxon, chevron, totalenergies, equinor]
+
+  - title: "MEDIA REACTION: Fossil fuel ad ban is 'bare minimum' to meet climate targets"
+    url: https://www.clientearth.org/latest/press-office/media-reaction-fossil-fuel-ad-ban-is-bare-minimum-to-meet-climate-targets/
+    date: "2025-04-11"
+    companies: [bp, shell, exxon, chevron, totalenergies]
+
+  - title: "Commission's State aid framework for Clean Industrial Deal misses climate goals"
+    url: https://www.clientearth.org/latest/press-office/press-releases/commission-s-state-aid-framework-for-clean-industrial-deal-misses-climate-goals-lawyers-warn/
+    date: "2025-06-23"
+    companies: [bp, shell, totalenergies, eni, repsol]
+
+  - title: "TotalEnergies' greenwashing advertising has been ruled illegal"
+    url: https://www.clientearth.org/latest/news/we-re-joining-legal-action-against-total-for-greenwashing/
+    date: "2025-10-23"
+    companies: [totalenergies]
+
+  
+
+  
+global_witness:
+  - title: "Big Oil's climate lobbying"
+    url: https://www.globalwitness.org/en/campaigns/fossil-gas/
+    date: "2025-01-01"
+    companies: [bp, shell, exxon, chevron, totalenergies]
+
+  - title: "BP records bumper profits while war rages"
+    url: https://globalwitness.org/en/press-releases/bp-records-bumper-profits-while-war-rages/
+    date: "2026-04-28"
+    companies: [bp]  
+
+  - title: "The true price of the Iran war for oil, people and the environment"
+    url: https://globalwitness.org/en/campaigns/fossil-fuels/the-true-price-of-the-iran-war-for-oil-people-and-the-environment/
+    date: "2026-03-09"  
+    companies: [bp, shell]
+  
+
+  - title: "Fossil fuel giants block pro-climate audiences from seeing ads on X, investigation finds"
+    url: https://globalwitness.org/en/press-releases/fossil-fuel-giants-block-pro-climate-audiences-from-seeing-ads-on-x-investigation-finds/
+    date: "2026-04-02"
+    companies: [bp, chevron, shell, totalenergies]
+
+  

@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "greenlens"
+version = "0.1.0"
+description = "Explainable greenwashing detection for oil and gas majors"
+requires-python = ">=3.11"
+dependencies = [
+    "pyyaml",
+    "python-dotenv",
+    "requests",
+    "pdfplumber",
+    "beautifulsoup4",
+]
+
+[project.optional-dependencies]
+nlp = ["openai", "sentence-transformers", "transformers", "torch"]
+api = ["fastapi", "uvicorn"]
+dev = ["pytest", "ruff"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100

@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" font-family="Inter, system-ui, -apple-system, sans-serif">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FAFCFA"/>
+      <stop offset="1" stop-color="#F0F5EE"/>
+    </linearGradient>
+    <linearGradient id="stage1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#E8F0E5"/>
+      <stop offset="1" stop-color="#D4E5CF"/>
+    </linearGradient>
+    <linearGradient id="stage2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#D4E5CF"/>
+      <stop offset="1" stop-color="#B8D5B0"/>
+    </linearGradient>
+    <linearGradient id="stage3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#B8D5B0"/>
+      <stop offset="1" stop-color="#9BC592"/>
+    </linearGradient>
+    <linearGradient id="stage4" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#9BC592"/>
+      <stop offset="1" stop-color="#7FB573"/>
+    </linearGradient>
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.08"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#2E5C42"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1600" height="900" fill="url(#bgGrad)"/>
+
+  <!-- Title block -->
+  <text x="80" y="80" font-size="42" font-weight="700" fill="#1F3A2E" letter-spacing="-1">GreenLens</text>
+  <text x="80" y="115" font-size="20" font-weight="400" fill="#5A7264">Explainable greenwashing detection · oil and gas majors</text>
+
+  <!-- Top right tag -->
+  <rect x="1340" y="60" width="200" height="36" rx="18" fill="#1F3A2E"/>
+  <text x="1440" y="84" font-size="14" font-weight="600" fill="#FAFCFA" text-anchor="middle">FOUR-STAGE PIPELINE</text>
+
+  <!-- Stage cards -->
+  <!-- Stage 1: Ingestion -->
+  <g filter="url(#cardShadow)">
+    <rect x="80" y="200" width="320" height="380" rx="16" fill="#FFFFFF" stroke="#D4E5CF" stroke-width="2"/>
+    <rect x="80" y="200" width="320" height="80" rx="16" fill="url(#stage1)"/>
+    <rect x="80" y="264" width="320" height="16" fill="url(#stage1)"/>
+    <text x="110" y="240" font-size="14" font-weight="700" fill="#2E5C42" letter-spacing="2">STAGE 01</text>
+    <text x="110" y="266" font-size="22" font-weight="700" fill="#1F3A2E">Ingestion</text>
+
+    <text x="110" y="320" font-size="13" font-weight="600" fill="#2E5C42" letter-spacing="1">INPUTS</text>
+    <text x="110" y="345" font-size="14" fill="#3D4F45">Sustainability reports (×10)</text>
+    <text x="110" y="368" font-size="14" fill="#3D4F45">Annual reports / 20-F</text>
+    <text x="110" y="391" font-size="14" fill="#3D4F45">Guardian API (climate desk)</text>
+    <text x="110" y="414" font-size="14" fill="#3D4F45">InfluenceMap reports</text>
+    <text x="110" y="437" font-size="14" fill="#3D4F45">Carbon Tracker analyses</text>
+    <text x="110" y="460" font-size="14" fill="#3D4F45">ClientEarth case data</text>
+
+    <text x="110" y="500" font-size="13" font-weight="600" fill="#2E5C42" letter-spacing="1">OUTPUT</text>
+    <text x="110" y="525" font-size="14" fill="#3D4F45">Parsed report text</text>
+    <text x="110" y="548" font-size="14" fill="#3D4F45">Structured evidence corpus</text>
+  </g>
+
+  <!-- Stage 2: Claim extraction -->
+  <g filter="url(#cardShadow)">
+    <rect x="430" y="200" width="320" height="380" rx="16" fill="#FFFFFF" stroke="#B8D5B0" stroke-width="2"/>
+    <rect x="430" y="200" width="320" height="80" rx="16" fill="url(#stage2)"/>
+    <rect x="430" y="264" width="320" height="16" fill="url(#stage2)"/>
+    <text x="460" y="240" font-size="14" font-weight="700" fill="#2E5C42" letter-spacing="2">STAGE 02</text>
+    <text x="460" y="266" font-size="22" font-weight="700" fill="#1F3A2E">Claim extraction</text>
+
+    <text x="460" y="320" font-size="13" font-weight="600" fill="#2E5C42" letter-spacing="1">MODELS</text>
+    <text x="460" y="345" font-size="14" fill="#3D4F45">ClimateBERT (relevance filter)</text>
+    <text x="460" y="368" font-size="14" fill="#3D4F45">GPT-4o-mini (structured parse)</text>
+
+    <text x="460" y="408" font-size="13" font-weight="600" fill="#2E5C42" letter-spacing="1">CATEGORIES</text>
+    <text x="460" y="433" font-size="14" fill="#3D4F45">Net-zero · emissions · methane</text>
+    <text x="460" y="456" font-size="14" fill="#3D4F45">Renewables · scope 3 · biodiversity</text>
+    <text x="460" y="479" font-size="14" fill="#3D4F45">Just transition · lobbying</text>
+
+    <text x="460" y="519" font-size="13" font-weight="600" fill="#2E5C42" letter-spacing="1">OUTPUT</text>
+    <text x="460" y="544" font-size="14" fill="#3D4F45">Structured claim objects</text>
+    <text x="460" y="567" font-size="14" fill="#3D4F45">(category, target, scope, year)</text>
+  </g>
+
+  <!-- Stage 3: Evidence retrieval -->
+  <g filter="url(#cardShadow)">
+    <rect x="780" y="200" width="320" height="380" rx="16" fill="#FFFFFF" stroke="#9BC592" stroke-width="2"/>
+    <rect x="780" y="200" width="320" height="80" rx="16" fill="url(#stage3)"/>
+    <rect x="780" y="264" width="320" height="16" fill="url(#stage3)"/>
+    <text x="810" y="240" font-size="14" font-weight="700" fill="#1F3A2E" letter-spacing="2">STAGE 03</text>
+    <text x="810" y="266" font-size="22" font-weight="700" fill="#1F3A2E">Evidence retrieval</text>
+
+    <text x="810" y="320" font-size="13" font-weight="600" fill="#1F3A2E" letter-spacing="1">RETRIEVAL</text>
+    <text x="810" y="345" font-size="14" fill="#3D4F45">SBERT semantic index</text>
+    <text x="810" y="368" font-size="14" fill="#3D4F45">all-mpnet-base-v2 embeddings</text>
+    <text x="810" y="391" font-size="14" fill="#3D4F45">Top-k candidate retrieval</text>
+
+    <text x="810" y="431" font-size="13" font-weight="600" fill="#1F3A2E" letter-spacing="1">RE-RANKING</text>
+    <text x="810" y="456" font-size="14" fill="#3D4F45">Cross-encoder relevance score</text>
+    <text x="810" y="479" font-size="14" fill="#3D4F45">Source credibility weighting</text>
+
+    <text x="810" y="519" font-size="13" font-weight="600" fill="#1F3A2E" letter-spacing="1">OUTPUT</text>
+    <text x="810" y="544" font-size="14" fill="#3D4F45">Claim ↔ evidence pairs</text>
+    <text x="810" y="567" font-size="14" fill="#3D4F45">Weighted relevance scores</text>
+  </g>
+
+  <!-- Stage 4: Scoring + explanation -->
+  <g filter="url(#cardShadow)">
+    <rect x="1130" y="200" width="380" height="380" rx="16" fill="#FFFFFF" stroke="#7FB573" stroke-width="2"/>
+    <rect x="1130" y="200" width="380" height="80" rx="16" fill="url(#stage4)"/>
+    <rect x="1130" y="264" width="380" height="16" fill="url(#stage4)"/>
+    <text x="1160" y="240" font-size="14" font-weight="700" fill="#FFFFFF" letter-spacing="2">STAGE 04</text>
+    <text x="1160" y="266" font-size="22" font-weight="700" fill="#FFFFFF">Scoring + explanation</text>
+
+    <text x="1160" y="320" font-size="13" font-weight="600" fill="#1F3A2E" letter-spacing="1">SCORING</text>
+    <text x="1160" y="345" font-size="14" fill="#3D4F45">Calibrated risk score (0–1)</text>
+    <text x="1160" y="368" font-size="14" fill="#3D4F45">Per-claim confidence interval</text>
+
+    <text x="1160" y="408" font-size="13" font-weight="600" fill="#1F3A2E" letter-spacing="1">EXPLAINABILITY</text>
+    <text x="1160" y="433" font-size="14" fill="#3D4F45">Original claim + evidence shown</text>
+    <text x="1160" y="456" font-size="14" fill="#3D4F45">Source weights surfaced</text>
+    <text x="1160" y="479" font-size="14" fill="#3D4F45">Structured rationale per flag</text>
+
+    <text x="1160" y="519" font-size="13" font-weight="600" fill="#1F3A2E" letter-spacing="1">OUTPUT</text>
+    <text x="1160" y="544" font-size="14" fill="#3D4F45">React frontend (claim cards)</text>
+    <text x="1160" y="567" font-size="14" fill="#3D4F45">JSON API (FastAPI)</text>
+  </g>
+
+  <!-- Connecting arrows -->
+  <path d="M 405 390 L 425 390" stroke="#2E5C42" stroke-width="2.5" fill="none" marker-end="url(#arrow)"/>
+  <path d="M 755 390 L 775 390" stroke="#2E5C42" stroke-width="2.5" fill="none" marker-end="url(#arrow)"/>
+  <path d="M 1105 390 L 1125 390" stroke="#2E5C42" stroke-width="2.5" fill="none" marker-end="url(#arrow)"/>
+
+  <!-- Bottom band: principle + evaluation -->
+  <rect x="80" y="640" width="1430" height="180" rx="16" fill="#1F3A2E"/>
+
+  <text x="120" y="690" font-size="13" font-weight="700" fill="#9BC592" letter-spacing="2">DESIGN PRINCIPLE</text>
+  <text x="120" y="725" font-size="22" font-weight="600" fill="#FFFFFF">Detection systems for regulated industries need to show their working.</text>
+  <text x="120" y="755" font-size="16" fill="#C4D9BD">A risk score with no explanation is a black box. Black boxes are not deployable in regulated contexts.</text>
+  <text x="120" y="780" font-size="16" fill="#C4D9BD">Compliance officers, regulators, and journalists need to see the evidence and the reasoning, not just the verdict.</text>
+
+  <!-- Evaluation chip -->
+  <rect x="1100" y="680" width="380" height="120" rx="12" fill="#2E5C42" stroke="#7FB573" stroke-width="1.5"/>
+  <text x="1130" y="710" font-size="13" font-weight="700" fill="#9BC592" letter-spacing="2">EVALUATION</text>
+  <text x="1130" y="740" font-size="16" font-weight="600" fill="#FFFFFF">Hand-labelled set, 100–200 claims</text>
+  <text x="1130" y="763" font-size="14" fill="#C4D9BD">Per-category precision and recall</text>
+  <text x="1130" y="785" font-size="14" fill="#C4D9BD">Failure mode taxonomy, published</text>
+
+  <!-- Footer mark -->
+  <text x="80" y="870" font-size="13" fill="#5A7264" font-weight="500">Built in 4 weeks · Python · ClimateBERT · OpenAI · SBERT · React · FastAPI</text>
+  <text x="1520" y="870" font-size="13" fill="#5A7264" text-anchor="end">github.com/owura/greenlens</text>
+</svg>
