@@ -37,4 +37,5 @@ dependencies = [
     "nltk",
     "transformers",
     "torch",
+    "openai",
 ]
