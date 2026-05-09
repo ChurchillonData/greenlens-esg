@@ -38,4 +38,6 @@ dependencies = [
     "transformers",
     "torch",
     "openai",
+    "sentence-transformers",
+    "numpy",
 ]
