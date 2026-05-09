@@ -25,3 +25,16 @@ where = ["src"]
 
 [tool.ruff]
 line-length = 100
+
+
+dependencies = [
+    "pyyaml",
+    "python-dotenv",
+    "requests",
+    "pdfplumber",
+    "pdfminer.six",
+    "beautifulsoup4",
+    "nltk",
+    "transformers",
+    "torch",
+]
