@@ -25,6 +25,9 @@ data/processed/
 data/evidence/
 data/outputs/
 
+# Allow the eval folder - it contains the hand-labelled dataset
+!data/eval/
+
 # Logs
 *.log
 

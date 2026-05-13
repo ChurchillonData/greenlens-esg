@@ -31,14 +31,30 @@ def already_labelled() -> set[str]:
     with open(LABELS_FILE, encoding="utf-8-sig") as f:
         return {json.loads(line)["claim_id"] for line in f if line.strip()}
 
+def show_evidence(claim: dict) -> None:
+    """Print the top retrieved evidence for the claim."""
+    evidence = claim.get("evidence", [])
+    if not evidence:
+        print("No evidence retrieved.")
+        return
+    print(f"\nTop {len(evidence)} retrieved evidence items:")
+    for i, ev in enumerate(evidence, start=1):
+        snippet = ev.get("text", "")[:300].replace("\n", " ")
+        print(f"\n  [{i}] (score {ev.get('score', 0):.2f}) {ev.get('evidence_id', '')}")
+        print(f"      {snippet}...")
+
 
 def ask_for_label(claim: dict) -> dict | None:
     """Ask the user to label one claim. Return label, or None to skip."""
     print("\n" + "=" * 70)
     print(f"Company: {claim['company_id']}")
+    print(f"Category (extracted): {claim.get('category', 'unknown')}")
     print(f"Claim:   {claim['claim_text']}")
     print("=" * 70)
 
+    show_evidence(claim)
+
+    print()
     judgement = input(f"Judgement ({'/'.join(CLASSES)}): ").strip()
     if judgement == "skip" or judgement not in CLASSES:
         print("Skipped.")
