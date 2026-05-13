@@ -30,7 +30,3 @@ data/outputs/
 
 # Logs
 *.log
-
-# Smoke test labelling data (real eval set lives in data/eval/labels.jsonl from week 3)
-data/eval/claims_to_label.jsonl
-data/eval/labels.jsonl
