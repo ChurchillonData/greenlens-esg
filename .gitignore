@@ -23,10 +23,14 @@ htmlcov/
 data/raw/
 data/processed/
 data/evidence/
-data/outputs/
+data/outputs/*
 
 # Allow the eval folder - it contains the hand-labelled dataset
 !data/eval/
+
+# Allow deliverable outputs only
+!data/outputs/scored.jsonl
+!data/outputs/rationales.jsonl
 
 # Logs
 *.log
