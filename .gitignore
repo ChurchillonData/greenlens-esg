@@ -28,8 +28,6 @@ data/outputs/
 data/historical/*.pdf
 data/historical/claims/
 data/historical/gap_scores.jsonl
-frontend/src/data/rationales.json
-frontend/src/data/tracker.json
 
 # Generated eval samples
 data/eval/frontend_claims.jsonl
