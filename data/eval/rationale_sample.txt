@@ -1,0 +1,77 @@
+=== 1. [well_substantiated] ===
+CLAIM: In 2025, we disposed of 1,987 thousand tonnes of waste, compared with 1,933 thousand tonnes in 2024.
+EVIDENCE[0]: ABSOLUTE IMPACT 2026
+APRIL 2026
+Absolute Impact 2026
+Investors must rapidly come to grips with climate-related risk on multiple fronts.
+As average global temperature rise approaches 1.5°C, the physica
+EVIDENCE[1]: Bill Gates charity trust’s holdings in fossil fuel firms rise despite divestment claims. The Gates Foundation Trust holds hundreds of millions of dollars in fossil fuel extractors despite Bill Gates’ 
+RATIONALE: The claim provides a specific figure of 1,987 thousand tonnes of waste disposed of in 2025, along with a direct comparison to the previous year's figure of 1,933 thousand tonnes. This concrete numerical data allows for easy verification and assessment of the company's waste management practices. The retrieved evidence does not directly relate to the claim about waste disposal, indicating that the claim stands independently and is verifiable based on the provided figures.
+KEY FACTORS: ['specific figure: 1,987 thousand tonnes', 'comparison to previous year: 1,933 thousand tonnes', 'testable data', 'independent of retrieved evidence']
+
+=== 2. [weakly_substantiated] ===
+CLAIM: Eni intends to use carbon credits only after reducing 90‑95% of its GHG emissions to achieve the 2050 Net Zero target for Net Intensity Scope 1+2+3.
+EVIDENCE[0]: Regulating
+Unburnable
+Carbon
+A world first atmospheric
+and financial stress test
+for fossil fuel reserves
+In partnership with
+February 2026
+1
+Foreword
+In 2011, Carbon Tracker’s Unburnable Carbon repor
+EVIDENCE[1]: Commission's State aid framework for Clean Industrial Deal misses climate goals
+RATIONALE: The claim is classified as weakly substantiated because it lacks specific numerical targets, a clear timeline for achieving the 2050 Net Zero goal, and defined scopes for emissions reduction. While it mentions a significant reduction in GHG emissions, the absence of concrete commitments or quantified outcomes makes the claim aspirational rather than credible. The lack of contradiction in the retrieved evidence does not lend support to the claim's validity.
+KEY FACTORS: ['no specific numerical targets', 'no clear timeline for 2050', 'absence of defined scopes', 'aspirational language']
+
+=== 3. [well_substantiated] ===
+CLAIM: In 2025 the number of reported oil spills increased to 110 compared with 96 in 2024 and 100 in 2023.
+EVIDENCE[0]: ABSOLUTE IMPACT 2026
+APRIL 2026
+Absolute Impact 2026
+Investors must rapidly come to grips with climate-related risk on multiple fronts.
+As average global temperature rise approaches 1.5°C, the physica
+EVIDENCE[1]: Big Oil's climate lobbying
+RATIONALE: The claim is well-substantiated because it provides specific numerical data regarding the increase in reported oil spills over three consecutive years, making it testable. The retrieved evidence does not directly address the claim about oil spills, focusing instead on broader climate-related risks and financial implications, which does not undermine the validity of the specific figures presented in the claim.
+KEY FACTORS: ['specific numbers: 110, 96, 100', 'consecutive years: 2023, 2024, 2025', 'testable claim', 'retrieved evidence unrelated']
+
+=== 4. [well_substantiated] ===
+CLAIM: In July, Repsol announced an investment of €16 million in the Puertollano industrial complex, with the aim of producing 5,300 tons per year of renewable hydrogen from bio-based gas (produced from wast
+EVIDENCE[0]: Commission's State aid framework for Clean Industrial Deal misses climate goals
+EVIDENCE[1]: ABSOLUTE IMPACT 2026
+APRIL 2026
+Absolute Impact 2026
+Investors must rapidly come to grips with climate-related risk on multiple fronts.
+As average global temperature rise approaches 1.5°C, the physica
+RATIONALE: The claim includes specific details such as an investment amount of €16 million and a production target of 5,300 tons per year of renewable hydrogen, which provide measurable and testable elements. The retrieved evidence does not directly challenge the claim's validity or provide context that undermines the stated investment and production goals, supporting the classification as well-substantiated.
+KEY FACTORS: ['investment amount: €16 million', 'production target: 5,300 tons/year', 'specific project: Puertollano industrial complex', 'no contradicting evidence found']
+
+=== 5. [weakly_substantiated] ===
+CLAIM: This first-of-its-kind plastic waste processing facility will have the capacity to produce 300 million pounds of plastic feedstock per year to be used in both advanced and mechanical recycling of post
+EVIDENCE[0]: Plastics industry pushed ‘advanced recycling’ despite knowing problems – report. Plastic producers have pushed “advanced recycling” as a salve to the plastic waste crisis despite knowing for years tha
+EVIDENCE[1]: Big Oil's climate lobbying
+RATIONALE: The claim specifies a capacity of 300 million pounds of plastic feedstock per year, which provides a concrete figure; however, it does not include any evidence regarding the operational status or feasibility of the facility. The absence of a defined timeline, specific operational details, or named entities involved in the project raises concerns about the credibility of the claim. While there is no direct contradiction in the retrieved evidence, it highlights skepticism around the viability of advanced recycling methods, which further undermines the substantiation of the claim.
+KEY FACTORS: ['specific capacity: 300 million pounds', 'no evidence of operational status', 'lack of defined timeline or scope', 'retrieved evidence questions feasibility']
+
+=== 6. [weakly_substantiated] ===
+CLAIM: Our Advancing Climate Solutions report details our approach to reducing emissions.
+EVIDENCE[0]: Revealed: ‘Corporate capture’ of UN aviation body by industry. The UN aviation organisation has been captured by the industry, a report has concluded, leading to the urgent action required to tackle t
+EVIDENCE[1]: Half of world’s CO2 emissions come from just 32 fossil fuel firms, study shows. Just 32 fossil fuel companies were responsible for half the global carbon dioxide emissions driving the climate crisis i
+RATIONALE: The claim is classified as weakly substantiated because it does not provide specific numbers, deadlines, or a defined scope regarding the emissions reduction approach. While the claim does not contradict any known facts, the lack of concrete details makes it difficult to assess the credibility of the sustainability efforts being described.
+KEY FACTORS: ['no specific numbers provided', 'no deadlines mentioned', 'no defined scope of emissions reduction', 'absence of named entities or quantified outcomes']
+
+=== 7. [weakly_substantiated] ===
+CLAIM: ExxonMobil expects to increase the amount of recycled produced water used in its Permian Basin hydraulic fracturing operations to more than 90% by 2030.
+EVIDENCE[0]: Half of world’s CO2 emissions come from just 32 fossil fuel firms, study shows. Just 32 fossil fuel companies were responsible for half the global carbon dioxide emissions driving the climate crisis i
+EVIDENCE[1]: Invisible plumes and ‘terrible pollution’: the reality of the US gas sites rated ‘grade A’. A rapidly expanding certification scheme run by a UK nonprofit and used by major gas companies may be unders
+RATIONALE: The claim lacks concrete elements such as a specific current percentage of recycled produced water used, which makes it an aspiration rather than a substantiated goal. Without a defined baseline or scope, the statement does not provide verifiable outcomes or commitments. The absence of contradiction in the retrieved evidence does not lend credibility to the claim, as it remains vague and unquantified.
+KEY FACTORS: ['no current percentage provided', 'no defined baseline or scope', 'aspirational goal without verification', 'absence of contradiction does not ensure credibility']
+
+=== 8. [well_substantiated] ===
+CLAIM: The associated decrease in fuel usage and flaring of excess gas is anticipated to reduce greenhouse gas (GHG) emissions by approximately 26,000 tonnes.
+EVIDENCE[0]: New North Sea drilling would barely reduce UK gas imports at all, data shows. Opening major new fields in the North Sea would make almost no difference to the UK’s reliance on gas imports, research ha
+EVIDENCE[1]: Big Oil's climate lobbying
+RATIONALE: The claim includes a specific figure of approximately 26,000 tonnes for the anticipated reduction in GHG emissions, which makes it a testable assertion. The retrieved evidence does not directly address the validity of this specific claim but highlights broader concerns about the effectiveness of fossil fuel projects in reducing emissions, suggesting that while the claim is quantifiable, it may be situated within a context of skepticism regarding overall industry impact.
+KEY FACTORS: ['quantified figure: 26,000 tonnes', 'testable assertion', 'context of skepticism about fossil fuel projects']

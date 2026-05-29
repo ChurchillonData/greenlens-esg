@@ -31,7 +31,15 @@ def retrieve_for_claim(claim: dict, claim_vector: np.ndarray) -> dict:
     return {
         **claim,
         "evidence": [
-            {"evidence_id": ev["evidence_id"], "score": score, "text": ev["text"][:500]}
+            {
+                "evidence_id": ev["evidence_id"],
+                "source": ev.get("source", ""),
+                "source_credibility": ev.get("source_credibility", 0.0),
+                "url": ev.get("url", ""),
+                "date": ev.get("date", ""),
+                "score": score,
+                "text": ev["text"][:500],
+            }
             for ev, score in top5
         ],
     }

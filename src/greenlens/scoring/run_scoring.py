@@ -1,8 +1,9 @@
 """Run LLM scoring on all claims with retrieved evidence.
 
 Usage:
-    python -m greenlens.scoring.run_scoring                # all claims
-    python -m greenlens.scoring.run_scoring --eval-only    # only eval set claims
+    python -m greenlens.scoring.run_scoring                              # all claims
+    python -m greenlens.scoring.run_scoring --eval-only                  # eval set (60)
+    python -m greenlens.scoring.run_scoring --claims-file PATH           # custom claim list
 
 Reads from data/outputs/retrieval.jsonl
 Writes to data/outputs/scored.jsonl
@@ -23,23 +24,30 @@ def load_retrieval() -> list[dict]:
         return [json.loads(line) for line in f if line.strip()]
 
 
-def load_eval_claim_texts() -> set[str]:
-    """Return the set of claim_texts in the eval set, for --eval-only mode."""
-    path = Path(CONFIG["paths"]["eval"]) / "claims_to_label.jsonl"
+def load_claim_texts_from(path: Path) -> set[str]:
+    """Return claim texts from a JSONL file (any file with a claim_text field)."""
     with open(path, encoding="utf-8-sig") as f:
         return {json.loads(line).get("claim_text", "") for line in f if line.strip()}
 
 
-def filter_to_eval(claims: list[dict], eval_texts: set[str]) -> list[dict]:
-    """Keep only claims whose claim_text is in the eval set, one row per unique claim_text."""
+def filter_to_claims(claims: list[dict], texts: set[str]) -> list[dict]:
+    """Keep only claims whose claim_text is in texts, deduplicating."""
     seen: set[str] = set()
     result = []
     for c in claims:
         ct = c.get("claim_text", "")
-        if ct in eval_texts and ct not in seen:
+        if ct in texts and ct not in seen:
             seen.add(ct)
             result.append(c)
     return result
+
+
+def _get_claims_file() -> Path | None:
+    """Parse --claims-file PATH from sys.argv, return Path or None."""
+    for i, arg in enumerate(sys.argv):
+        if arg == "--claims-file" and i + 1 < len(sys.argv):
+            return Path(sys.argv[i + 1])
+    return None
 
 
 def score_all(claims: list[dict]) -> list[dict]:
@@ -65,11 +73,18 @@ def score_all(claims: list[dict]) -> list[dict]:
 
 
 def main() -> None:
-    """Score either all claims or just the eval set."""
+    """Score either all claims, the eval set, or a custom claim list."""
     claims = load_retrieval()
-    if "--eval-only" in sys.argv:
-        eval_texts = load_eval_claim_texts()
-        claims = filter_to_eval(claims, eval_texts)
+
+    claims_file = _get_claims_file()
+    if claims_file:
+        texts = load_claim_texts_from(claims_file)
+        claims = filter_to_claims(claims, texts)
+        print(f"Scoring {len(claims)} claims from {claims_file.name}...")
+    elif "--eval-only" in sys.argv:
+        eval_path = Path(CONFIG["paths"]["eval"]) / "claims_to_label.jsonl"
+        texts = load_claim_texts_from(eval_path)
+        claims = filter_to_claims(claims, texts)
         print(f"Scoring {len(claims)} eval-set claims...")
     else:
         print(f"Scoring {len(claims)} claims...")

@@ -9,4 +9,6 @@ SOURCE_WEIGHTS = {
     "Global Witness": 0.85,
     "InfluenceMap": 0.95,
     "Carbon Tracker": 0.95,
+    "Reclaim Finance": 0.88,
+    "TPI": 0.92,
 }

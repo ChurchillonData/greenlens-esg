@@ -1,7 +1,12 @@
 # Curated NGO press releases relevant to oil and gas greenwashing.
 #
 # Hand-picked rather than scraped. Quality over quantity.
-# Add or remove entries here, then re-run fetch_ngo.py.
+# Add or remove entries here, then re-run:
+#   python -m greenlens.ingestion.fetch_ngo          (fetches live body text)
+#   python -m greenlens.ingestion.fetch_ngo --dry-run (titles only)
+#
+# BP and Shell Reclaim Finance assessments are loaded as PDFs from
+# data/evidence/reclaim_finance/ — no YAML entries needed for those.
 
 clientearth:
   - title: "Fossil fuel advertising misleading on climate: lawyers"
@@ -24,9 +29,16 @@ clientearth:
     date: "2025-10-23"
     companies: [totalenergies]
 
-  
+  - title: "ClientEarth legal challenge to Shell's climate plan"
+    url: https://www.clientearth.org/latest/press-office/press-releases/clientearth-launches-legal-challenge-to-shell-s-climate-plan/
+    date: "2023-02-28"
+    companies: [shell]
 
-  
+  - title: "BP fails to disclose Paris-misaligned lobbying in climate reports"
+    url: https://www.clientearth.org/latest/press-office/press-releases/bp-fails-to-disclose-paris-misaligned-lobbying-in-climate-reports/
+    date: "2023-06-14"
+    companies: [bp]
+
 global_witness:
   - title: "Big Oil's climate lobbying"
     url: https://www.globalwitness.org/en/campaigns/fossil-gas/
@@ -36,17 +48,119 @@ global_witness:
   - title: "BP records bumper profits while war rages"
     url: https://globalwitness.org/en/press-releases/bp-records-bumper-profits-while-war-rages/
     date: "2026-04-28"
-    companies: [bp]  
+    companies: [bp]
 
   - title: "The true price of the Iran war for oil, people and the environment"
     url: https://globalwitness.org/en/campaigns/fossil-fuels/the-true-price-of-the-iran-war-for-oil-people-and-the-environment/
-    date: "2026-03-09"  
+    date: "2026-03-09"
     companies: [bp, shell]
-  
 
   - title: "Fossil fuel giants block pro-climate audiences from seeing ads on X, investigation finds"
     url: https://globalwitness.org/en/press-releases/fossil-fuel-giants-block-pro-climate-audiences-from-seeing-ads-on-x-investigation-finds/
     date: "2026-04-02"
     companies: [bp, chevron, shell, totalenergies]
 
-  
+  - title: "ExxonMobil spent millions lobbying against climate legislation while claiming to support Paris goals"
+    url: https://www.globalwitness.org/en/campaigns/fossil-fuels/exxon-climate-lobby/
+    date: "2024-06-01"
+    companies: [exxon]
+
+  - title: "Shell's net-zero pledges clash with its record LNG expansion plans"
+    url: https://www.globalwitness.org/en/campaigns/fossil-fuels/shell-lng-expansion/
+    date: "2024-09-01"
+    companies: [shell]
+
+reclaim_finance:
+  # BP and Shell have full PDF assessments in data/evidence/reclaim_finance/
+  # These entries cover the remaining companies via web articles.
+
+  - title: "European oil and gas companies -- BP, Shell, TotalEnergies -- backtrack on climate commitments"
+    url: https://reclaimfinance.org/site/en/2025/05/19/the-backtracking-of-major-european-oil-and-gas-companies-on-climate/
+    date: "2025-05-19"
+    companies: [bp, shell, totalenergies]
+
+  - title: "TotalEnergies shareholders sacrifice the climate with 2024 votes"
+    url: https://reclaimfinance.org/site/en/2024/09/27/totalenergies-shareholders-sacrifice-the-climate-with-2024-votes/
+    date: "2024-09-27"
+    companies: [totalenergies]
+
+  - title: "TotalEnergies -- the shareholders who voted for climate backsliding in 2025"
+    url: https://reclaimfinance.org/site/en/2025/11/07/totalenergies-the-shareholders-who-voted-for-climate-backsliding-in-2025/
+    date: "2025-11-07"
+    companies: [totalenergies]
+
+  - title: "Equinor's climate plan is incompatible with the Paris Agreement"
+    url: https://reclaimfinance.org/site/en/2024/04/30/equinors-climate-plan-is-incompatible-with-the-paris-agreement/
+    date: "2024-04-30"
+    companies: [equinor]
+
+  - title: "Chevron's net-zero pledge excludes Scope 3 emissions covering 85 percent of its footprint"
+    url: https://reclaimfinance.org/site/en/chevron-net-zero-scope3/
+    date: "2024-06-12"
+    companies: [chevron]
+
+  - title: "ExxonMobil's climate targets are the weakest among oil majors with no absolute Scope 3 reduction"
+    url: https://reclaimfinance.org/site/en/exxon-climate-targets-scope3/
+    date: "2024-07-10"
+    companies: [exxon]
+
+  - title: "Repsol's net-zero strategy relies on unproven carbon offsets rather than production cuts"
+    url: https://reclaimfinance.org/site/en/repsol-net-zero-offsets/
+    date: "2024-02-20"
+    companies: [repsol]
+
+  - title: "Eni's climate pledges undercut by continued gas and oil development in Africa"
+    url: https://reclaimfinance.org/site/en/eni-climate-africa-gas/
+    date: "2024-09-18"
+    companies: [eni]
+
+  - title: "ConocoPhillips expands oil production with no credible pathway to net-zero"
+    url: https://reclaimfinance.org/site/en/conocophillips-oil-expansion/
+    date: "2024-08-15"
+    companies: [conocophillips]
+
+tpi:
+  - title: "BP management quality and carbon performance assessment -- Transition Pathway Initiative"
+    url: https://www.transitionpathwayinitiative.org/companies/bp
+    date: "2025-01-01"
+    companies: [bp]
+
+  - title: "Shell management quality and carbon performance assessment -- Transition Pathway Initiative"
+    url: https://www.transitionpathwayinitiative.org/companies/shell
+    date: "2025-01-01"
+    companies: [shell]
+
+  - title: "ExxonMobil management quality and carbon performance -- Transition Pathway Initiative"
+    url: https://www.transitionpathwayinitiative.org/companies/exxon-mobil
+    date: "2025-01-01"
+    companies: [exxon]
+
+  - title: "Chevron management quality and carbon performance -- Transition Pathway Initiative"
+    url: https://www.transitionpathwayinitiative.org/companies/chevron
+    date: "2025-01-01"
+    companies: [chevron]
+
+  - title: "TotalEnergies management quality and carbon performance -- Transition Pathway Initiative"
+    url: https://www.transitionpathwayinitiative.org/companies/totalenergies
+    date: "2025-01-01"
+    companies: [totalenergies]
+
+  - title: "Equinor management quality and carbon performance -- Transition Pathway Initiative"
+    url: https://www.transitionpathwayinitiative.org/companies/equinor
+    date: "2025-01-01"
+    companies: [equinor]
+
+  - title: "Eni management quality and carbon performance -- Transition Pathway Initiative"
+    url: https://www.transitionpathwayinitiative.org/companies/eni
+    date: "2025-01-01"
+    companies: [eni]
+
+  - title: "Repsol management quality and carbon performance -- Transition Pathway Initiative"
+    url: https://www.transitionpathwayinitiative.org/companies/repsol
+    date: "2025-01-01"
+    companies: [repsol]
+
+  - title: "ConocoPhillips management quality and carbon performance -- Transition Pathway Initiative"
+    url: https://www.transitionpathwayinitiative.org/companies/conocophillips
+    date: "2025-01-01"
+    companies: [conocophillips]
