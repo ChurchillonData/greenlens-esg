@@ -12,7 +12,10 @@ dependencies = [
     "python-dotenv",
     "requests",
     "pdfplumber",
+    "pdfminer.six",
     "beautifulsoup4",
+    "nltk",
+    "numpy",
 ]
 
 [project.optional-dependencies]
@@ -25,19 +28,3 @@ where = ["src"]
 
 [tool.ruff]
 line-length = 100
-
-
-dependencies = [
-    "pyyaml",
-    "python-dotenv",
-    "requests",
-    "pdfplumber",
-    "pdfminer.six",
-    "beautifulsoup4",
-    "nltk",
-    "transformers",
-    "torch",
-    "openai",
-    "sentence-transformers",
-    "numpy",
-]
