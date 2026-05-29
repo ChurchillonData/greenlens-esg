@@ -3,6 +3,12 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    height: 100%;
+    /* Prevent elastic bounce at document level on iOS */
+    overscroll-behavior: none;
+  }
+
   body {
     font-family: 'Roboto', system-ui, sans-serif;
     font-weight: 400;
@@ -10,11 +16,20 @@
     color: #111827;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overscroll-behavior: none;
   }
 
   h1, h2, h3 {
     font-family: 'Montserrat', system-ui, sans-serif;
     font-weight: 800;
     letter-spacing: -0.02em;
+  }
+
+  /* Smooth momentum scrolling on iOS for all scroll containers */
+  .overflow-y-auto,
+  .overflow-y-scroll,
+  .overflow-x-auto {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
   }
 }

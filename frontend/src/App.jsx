@@ -146,7 +146,7 @@ export default function App() {
   }
 
   return (
-    <div className="flex flex-col h-screen bg-paper">
+    <div className="flex flex-col h-dvh bg-paper">
       <Header onShowSourceInfo={() => setShowSourceInfo(true)} />
       <div className="flex flex-1 overflow-hidden">
         <ClaimList
