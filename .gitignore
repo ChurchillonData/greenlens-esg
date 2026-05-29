@@ -19,18 +19,25 @@ htmlcov/
 # Secrets
 .env
 
-# Project data (regenerated from sources)
-data/raw/
-data/processed/
-data/evidence/
-data/outputs/*
+# Frontend build artifacts
+frontend/dist/
+frontend/node_modules/
 
-# Allow the eval folder - it contains the hand-labelled dataset
-!data/eval/
+# Generated pipeline outputs (run scripts/ to regenerate)
+data/outputs/
+data/historical/*.pdf
+data/historical/claims/
+data/historical/gap_scores.jsonl
+frontend/src/data/rationales.json
+frontend/src/data/tracker.json
 
-# Allow deliverable outputs only
-!data/outputs/scored.jsonl
-!data/outputs/rationales.jsonl
+# Generated eval samples
+data/eval/frontend_claims.jsonl
+data/eval/rationale_sample.txt
+
+# Working images / mockups
+*.jpeg
+*.jpg
 
 # Logs
 *.log
