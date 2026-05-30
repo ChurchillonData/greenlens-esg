@@ -1,133 +1,137 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
 
-  <!-- Paper background -->
+  <!-- Background -->
   <rect width="1200" height="630" fill="#F7F6F2"/>
 
   <!-- ── Header bar ── -->
-  <rect width="1200" height="52" fill="white"/>
-  <rect y="52" width="1200" height="1" fill="#E5E7EB"/>
+  <rect width="1200" height="56" fill="white"/>
+  <rect y="55" width="1200" height="1" fill="#E5E7EB"/>
+
   <!-- Logo box -->
-  <rect x="24" y="8" width="36" height="36" rx="9" fill="rgba(31,58,46,0.07)" stroke="#FACC15" stroke-width="1.5"/>
-  <text x="42" y="31" text-anchor="middle" font-size="17" fill="#1F3A2E">🌿</text>
+  <rect x="24" y="9" width="37" height="37" rx="9" fill="rgba(31,58,46,0.07)" stroke="#FACC15" stroke-width="1.5"/>
+  <!-- Leaf SVG path (same as favicon, scaled to fit box) -->
+  <path transform="translate(24 9) scale(1.16)" d="M16 5C10 7 6 12 6 18C6 24 10 28 16 28C22 28 26 24 26 18C26 12 22 7 16 5Z" fill="#FACC15"/>
+  <line transform="translate(24 9) scale(1.16)" x1="16" y1="8" x2="16" y2="26" stroke="#1F3A2E" stroke-width="1.5" stroke-linecap="round"/>
+
   <!-- App name -->
-  <text x="68" y="32" font-family="system-ui,-apple-system,sans-serif" font-weight="900" font-size="20" fill="#1F3A2E">Claimify</text>
-  <rect x="150" y="16" width="38" height="18" rx="9" fill="#1F3A2E"/>
-  <text x="169" y="29" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="800" font-size="9" letter-spacing="2" fill="white">ESG</text>
+  <text x="71" y="34" font-family="system-ui,-apple-system,sans-serif" font-weight="900" font-size="21" fill="#1F3A2E">Claimify</text>
+  <rect x="156" y="17" width="38" height="18" rx="9" fill="#1F3A2E"/>
+  <text x="175" y="30" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="800" font-size="9" letter-spacing="2" fill="white">ESG</text>
 
-  <!-- ── Left sidebar strip (claim list preview) ── -->
-  <rect x="0" y="53" width="232" height="577" fill="white"/>
-  <rect x="232" y="53" width="1" fill="#E5E7EB" height="577"/>
+  <!-- ── Left sidebar ── -->
+  <rect x="0" y="56" width="236" height="574" fill="white"/>
+  <rect x="236" y="56" width="1" height="574" fill="#E5E7EB"/>
 
-  <!-- Sidebar tabs -->
-  <text x="58" y="80" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="600" fill="#1F3A2E">Claims</text>
-  <rect x="20" y="86" width="76" height="2" rx="1" fill="#1F3A2E"/>
-  <text x="116" y="80" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#9CA3AF">Compare</text>
-  <text x="192" y="80" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#9CA3AF">Tracker</text>
-  <rect x="0" y="88" width="232" height="1" fill="#E5E7EB"/>
+  <!-- Tabs -->
+  <text x="40" y="82" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="600" fill="#1F3A2E">Claims</text>
+  <rect x="8" y="88" width="64" height="2" rx="1" fill="#1F3A2E"/>
+  <text x="118" y="82" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#9CA3AF">Compare</text>
+  <text x="198" y="82" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#9CA3AF">Tracker</text>
+  <rect x="0" y="90" width="236" height="1" fill="#E5E7EB"/>
 
-  <!-- Company selector pill -->
-  <rect x="12" y="98" width="208" height="30" rx="6" fill="white" stroke="#D1D5DB" stroke-width="1"/>
-  <rect x="20" y="105" width="16" height="16" rx="3" fill="#006DB7"/>
-  <text x="28" y="117" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="900" font-size="8" fill="white">BP</text>
-  <text x="44" y="118" font-family="system-ui,sans-serif" font-weight="600" font-size="12" fill="#111827">BP p.l.c.</text>
+  <!-- Company selector -->
+  <rect x="10" y="100" width="216" height="30" rx="6" fill="white" stroke="#D1D5DB" stroke-width="1"/>
+  <rect x="18" y="107" width="16" height="16" rx="3" fill="#006DB7"/>
+  <text x="26" y="119" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="900" font-size="8" fill="white">BP</text>
+  <text x="42" y="119" font-family="system-ui,sans-serif" font-weight="600" font-size="12" fill="#111827">BP p.l.c.</text>
 
-  <!-- Claim list items -->
-  <!-- Item 1 selected -->
-  <rect x="0" y="136" width="4" height="58" fill="#1F3A2E"/>
-  <rect x="0" y="136" width="232" height="58" fill="#ECFDF5"/>
-  <rect x="16" y="146" width="8" height="8" rx="4" fill="#F59E0B"/>
-  <text x="30" y="154" font-family="system-ui,sans-serif" font-size="9" font-weight="600" fill="#374151">Emissions Reduction</text>
-  <rect x="0" y="194" width="232" height="1" fill="#E5E7EB"/>
-  <text x="16" y="167" font-family="system-ui,sans-serif" font-size="9" fill="#6B7280">"By 2030, we aim to reduce our</text>
-  <text x="16" y="179" font-family="system-ui,sans-serif" font-size="9" fill="#6B7280">net oil production by 40%..."</text>
-  <text x="16" y="190" font-family="system-ui,sans-serif" font-size="8" fill="#9CA3AF">GreenSignal: <tspan font-weight="700" fill="#F59E0B">0.74</tspan></text>
+  <!-- Claim item 1 (selected) -->
+  <rect x="0" y="138" width="236" height="58" fill="#ECFDF5"/>
+  <rect x="0" y="138" width="3" height="58" fill="#1F3A2E"/>
+  <circle cx="18" cy="152" r="4" fill="#F59E0B"/>
+  <text x="28" y="156" font-family="system-ui,sans-serif" font-size="9" font-weight="600" fill="#374151">Emissions Reduction</text>
+  <text x="14" y="170" font-family="system-ui,sans-serif" font-size="9" fill="#6B7280">"By 2030, we aim to reduce our</text>
+  <text x="14" y="183" font-family="system-ui,sans-serif" font-size="9" fill="#6B7280">net oil production by 40%..."</text>
+  <rect x="0" y="196" width="236" height="1" fill="#E5E7EB"/>
 
-  <!-- Item 2 -->
-  <rect x="0" y="195" width="232" height="55" fill="white"/>
-  <rect x="0" y="250" width="232" height="1" fill="#F3F4F6"/>
-  <rect x="16" y="205" width="8" height="8" rx="4" fill="#10B981"/>
-  <text x="30" y="213" font-family="system-ui,sans-serif" font-size="9" font-weight="600" fill="#374151">Net-Zero Commitments</text>
-  <text x="16" y="226" font-family="system-ui,sans-serif" font-size="9" fill="#6B7280">"We target net zero across our</text>
-  <text x="16" y="238" font-family="system-ui,sans-serif" font-size="9" fill="#6B7280">operations by 2050..."</text>
-  <text x="16" y="248" font-family="system-ui,sans-serif" font-size="8" fill="#9CA3AF">GreenSignal: <tspan font-weight="700" fill="#10B981">0.31</tspan></text>
+  <!-- Claim item 2 -->
+  <rect x="0" y="197" width="236" height="55" fill="white"/>
+  <circle cx="18" cy="211" r="4" fill="#10B981"/>
+  <text x="28" y="215" font-family="system-ui,sans-serif" font-size="9" font-weight="600" fill="#374151">Net-Zero Commitment</text>
+  <text x="14" y="229" font-family="system-ui,sans-serif" font-size="9" fill="#6B7280">"Net zero across operations</text>
+  <text x="14" y="242" font-family="system-ui,sans-serif" font-size="9" fill="#6B7280">by 2050..."</text>
+  <rect x="0" y="252" width="236" height="1" fill="#F3F4F6"/>
 
-  <!-- Item 3 -->
-  <rect x="0" y="251" width="232" height="55" fill="white"/>
-  <rect x="0" y="306" width="232" height="1" fill="#F3F4F6"/>
-  <rect x="16" y="261" width="8" height="8" rx="4" fill="#EF4444"/>
-  <text x="30" y="269" font-family="system-ui,sans-serif" font-size="9" font-weight="600" fill="#374151">Scope 3 Emissions</text>
-  <text x="16" y="282" font-family="system-ui,sans-serif" font-size="9" fill="#6B7280">"Our Scope 3 emissions will be</text>
-  <text x="16" y="294" font-family="system-ui,sans-serif" font-size="9" fill="#6B7280">halved through transition fuels..."</text>
-  <text x="16" y="304" font-family="system-ui,sans-serif" font-size="8" fill="#9CA3AF">GreenSignal: <tspan font-weight="700" fill="#EF4444">0.89</tspan></text>
+  <!-- Claim item 3 -->
+  <rect x="0" y="253" width="236" height="55" fill="white"/>
+  <circle cx="18" cy="267" r="4" fill="#EF4444"/>
+  <text x="28" y="271" font-family="system-ui,sans-serif" font-size="9" font-weight="600" fill="#374151">Scope 3 Emissions</text>
+  <text x="14" y="285" font-family="system-ui,sans-serif" font-size="9" fill="#6B7280">"Our Scope 3 emissions will be</text>
+  <text x="14" y="298" font-family="system-ui,sans-serif" font-size="9" fill="#6B7280">halved through transition..."</text>
+  <rect x="0" y="308" width="236" height="1" fill="#F3F4F6"/>
 
-  <!-- Item 4 -->
-  <rect x="0" y="307" width="232" height="55" fill="white"/>
-  <rect x="0" y="362" width="232" height="1" fill="#F3F4F6"/>
-  <rect x="16" y="317" width="8" height="8" rx="4" fill="#F59E0B"/>
-  <text x="30" y="325" font-family="system-ui,sans-serif" font-size="9" font-weight="600" fill="#374151">Renewables Investment</text>
-  <text x="16" y="338" font-family="system-ui,sans-serif" font-size="9" fill="#6B7280">"We invested $3.5bn in renewable</text>
-  <text x="16" y="350" font-family="system-ui,sans-serif" font-size="9" fill="#6B7280">energy projects in 2024..."</text>
-  <text x="16" y="360" font-family="system-ui,sans-serif" font-size="8" fill="#9CA3AF">GreenSignal: <tspan font-weight="700" fill="#F59E0B">0.61</tspan></text>
+  <!-- Claim item 4 -->
+  <rect x="0" y="309" width="236" height="55" fill="white"/>
+  <circle cx="18" cy="323" r="4" fill="#F59E0B"/>
+  <text x="28" y="327" font-family="system-ui,sans-serif" font-size="9" font-weight="600" fill="#374151">Renewables Investment</text>
+  <text x="14" y="341" font-family="system-ui,sans-serif" font-size="9" fill="#6B7280">"Invested $3.5bn in renewable</text>
+  <text x="14" y="354" font-family="system-ui,sans-serif" font-size="9" fill="#6B7280">energy projects in 2024..."</text>
+  <rect x="0" y="364" width="236" height="1" fill="#F3F4F6"/>
 
-  <!-- ── Main claim detail card ── -->
-  <rect x="248" y="68" width="932" height="548" rx="12" fill="white" stroke="#E5E7EB" stroke-width="1"/>
+  <!-- ── Main detail card ── -->
+  <rect x="252" y="72" width="924" height="534" rx="14" fill="white" stroke="#E5E7EB" stroke-width="1"/>
 
-  <!-- Company header -->
-  <rect x="272" y="92" width="52" height="52" rx="13" fill="white" stroke="#E5E7EB" stroke-width="1.5"/>
-  <rect x="278" y="98" width="40" height="40" rx="9" fill="#006DB7"/>
-  <text x="298" y="123" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="900" font-size="17" fill="white">BP</text>
-  <text x="336" y="116" font-family="system-ui,sans-serif" font-weight="700" font-size="15" fill="#1F3A2E">BP p.l.c.</text>
-  <text x="336" y="133" font-family="system-ui,sans-serif" font-size="11" fill="#9CA3AF">Sustainability Report 2025 · Emissions Reduction</text>
+  <!-- BP company header row -->
+  <rect x="280" y="100" width="48" height="48" rx="12" fill="#006DB7"/>
+  <text x="304" y="130" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="900" font-size="18" fill="white">BP</text>
+  <text x="344" y="120" font-family="system-ui,sans-serif" font-weight="700" font-size="15" fill="#1F3A2E">BP p.l.c.</text>
+  <text x="344" y="138" font-family="system-ui,sans-serif" font-size="11" fill="#9CA3AF">Annual Report 2025  ·  Emissions Reduction</text>
 
-  <!-- Claim label -->
-  <text x="272" y="172" font-family="system-ui,sans-serif" font-weight="700" font-size="10" fill="#9CA3AF" letter-spacing="2">CLAIM</text>
-  <rect x="272" y="178" width="904" height="1" fill="#F3F4F6"/>
+  <!-- Divider -->
+  <rect x="280" y="166" width="868" height="1" fill="#F3F4F6"/>
 
   <!-- Claim text -->
-  <text x="272" y="206" font-family="Georgia,'Times New Roman',serif" font-style="italic" font-size="17" fill="#111827">"By 2030, we aim to reduce our net oil production by 40% and grow</text>
-  <text x="272" y="228" font-family="Georgia,'Times New Roman',serif" font-style="italic" font-size="17" fill="#111827">our low-carbon investment to $5bn per year, consistent with</text>
-  <text x="272" y="250" font-family="Georgia,'Times New Roman',serif" font-style="italic" font-size="17" fill="#111827">the goals of the Paris Agreement."</text>
+  <text x="280" y="189" font-family="system-ui,sans-serif" font-weight="700" font-size="10" letter-spacing="2" fill="#9CA3AF">CLAIM</text>
+  <text x="280" y="216" font-family="Georgia,'Times New Roman',serif" font-style="italic" font-size="17" fill="#111827">"By 2030, we aim to reduce our net oil production by 40% and grow our</text>
+  <text x="280" y="239" font-family="Georgia,'Times New Roman',serif" font-style="italic" font-size="17" fill="#111827">low-carbon investment to $5bn per year, consistent with the goals of the</text>
+  <text x="280" y="262" font-family="Georgia,'Times New Roman',serif" font-style="italic" font-size="17" fill="#111827">Paris Agreement."</text>
 
-  <!-- GreenSignal label -->
-  <text x="272" y="288" font-family="system-ui,sans-serif" font-weight="700" font-size="10" fill="#9CA3AF" letter-spacing="2">GREENSIGNAL</text>
-  <rect x="272" y="294" width="904" height="1" fill="#F3F4F6"/>
+  <!-- Divider -->
+  <rect x="280" y="282" width="868" height="1" fill="#F3F4F6"/>
+
+  <!-- GreenSignal section -->
+  <text x="280" y="304" font-family="system-ui,sans-serif" font-weight="700" font-size="10" letter-spacing="2" fill="#9CA3AF">GREENSIGNAL</text>
 
   <!-- Score number -->
-  <text x="272" y="346" font-family="'Courier New',Courier,monospace" font-weight="900" font-size="56" fill="#F59E0B">0.74</text>
+  <text x="280" y="364" font-family="'Courier New',Courier,monospace" font-weight="900" font-size="58" fill="#F59E0B">0.74</text>
 
-  <!-- Verdict badge -->
-  <rect x="380" y="308" width="172" height="22" rx="11" fill="#FEF3C7" stroke="#FDE68A" stroke-width="1"/>
-  <text x="466" y="324" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="600" fill="#92400E">weakly substantiated</text>
+  <!-- Verdict badge (positioned right of score) -->
+  <rect x="418" y="327" width="180" height="22" rx="11" fill="#FEF3C7" stroke="#FDE68A" stroke-width="1"/>
+  <text x="508" y="343" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="600" fill="#92400E">weakly substantiated</text>
 
-  <!-- Score bars (10 segments, 7 filled = 0.74) -->
-  <rect x="380" y="334" width="82" height="7" rx="3" fill="#F59E0B"/>
-  <rect x="468" y="334" width="82" height="7" rx="3" fill="#F59E0B"/>
-  <rect x="556" y="334" width="82" height="7" rx="3" fill="#F59E0B"/>
-  <rect x="644" y="334" width="82" height="7" rx="3" fill="#F59E0B"/>
-  <rect x="732" y="334" width="82" height="7" rx="3" fill="#F59E0B"/>
-  <rect x="820" y="334" width="82" height="7" rx="3" fill="#F59E0B"/>
-  <rect x="908" y="334" width="82" height="7" rx="3" fill="#F59E0B"/>
-  <rect x="996" y="334" width="82" height="7" rx="3" fill="#E5E7EB"/>
-  <rect x="1084" y="334" width="44" height="7" rx="3" fill="#E5E7EB"/>
+  <!-- Score bars — 10 bars, 7 amber, 3 grey -->
+  <!-- bar width = 78, gap = 4, start x = 418 -->
+  <rect x="418" y="356" width="78" height="7" rx="3" fill="#F59E0B"/>
+  <rect x="500" y="356" width="78" height="7" rx="3" fill="#F59E0B"/>
+  <rect x="582" y="356" width="78" height="7" rx="3" fill="#F59E0B"/>
+  <rect x="664" y="356" width="78" height="7" rx="3" fill="#F59E0B"/>
+  <rect x="746" y="356" width="78" height="7" rx="3" fill="#F59E0B"/>
+  <rect x="828" y="356" width="78" height="7" rx="3" fill="#F59E0B"/>
+  <rect x="910" y="356" width="78" height="7" rx="3" fill="#F59E0B"/>
+  <rect x="992" y="356" width="78" height="7" rx="3" fill="#E5E7EB"/>
+  <rect x="1074" y="356" width="78" height="7" rx="3" fill="#E5E7EB"/>
+
+  <!-- Divider -->
+  <rect x="280" y="380" width="868" height="1" fill="#F3F4F6"/>
 
   <!-- Evidence section -->
-  <text x="272" y="380" font-family="system-ui,sans-serif" font-weight="700" font-size="10" fill="#9CA3AF" letter-spacing="2">TOP EVIDENCE</text>
-  <rect x="272" y="386" width="904" height="1" fill="#F3F4F6"/>
+  <text x="280" y="402" font-family="system-ui,sans-serif" font-weight="700" font-size="10" letter-spacing="2" fill="#9CA3AF">TOP EVIDENCE</text>
 
-  <rect x="272" y="396" width="904" height="76" rx="8" fill="#F9FAFB" stroke="#F3F4F6" stroke-width="1"/>
-  <text x="292" y="416" font-family="system-ui,sans-serif" font-weight="600" font-size="13" fill="#374151">Carbon Tracker</text>
-  <rect x="400" y="403" width="86" height="18" rx="9" fill="#D1FAE5"/>
-  <text x="443" y="416" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="600" fill="#065F46">contradicts</text>
-  <text x="292" y="438" font-family="system-ui,sans-serif" font-size="12" fill="#6B7280">"BP's capex allocation to low-carbon remains below IEA net-zero pathway benchmarks,</text>
-  <text x="292" y="456" font-family="system-ui,sans-serif" font-size="12" fill="#6B7280">suggesting the $5bn target may not align with Paris-compatible trajectories..."</text>
+  <!-- Evidence card -->
+  <rect x="280" y="414" width="868" height="80" rx="8" fill="#F9FAFB" stroke="#F3F4F6" stroke-width="1"/>
+  <text x="300" y="436" font-family="system-ui,sans-serif" font-weight="700" font-size="13" fill="#374151">Carbon Tracker</text>
+  <rect x="410" y="422" width="82" height="18" rx="9" fill="#FEE2E2"/>
+  <text x="451" y="435" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="600" fill="#991B1B">contradicts</text>
+  <text x="300" y="456" font-family="system-ui,sans-serif" font-size="12" fill="#6B7280">"BP's capex allocation to low-carbon remains below IEA net-zero pathway benchmarks,</text>
+  <text x="300" y="474" font-family="system-ui,sans-serif" font-size="12" fill="#6B7280">suggesting the $5bn target may not align with Paris-compatible trajectories..."</text>
 
-  <!-- View all evidence -->
-  <text x="272" y="502" font-family="system-ui,sans-serif" font-weight="600" font-size="12" fill="#1F3A2E">View all evidence →</text>
+  <!-- View all link -->
+  <text x="280" y="522" font-family="system-ui,sans-serif" font-weight="600" font-size="12" fill="#1F3A2E">View all evidence  →</text>
 
-  <!-- ── Bottom strip / footer ── -->
-  <rect y="596" width="1200" height="34" fill="white"/>
-  <rect y="596" width="1200" height="1" fill="#E5E7EB"/>
-  <text x="248" y="618" font-family="system-ui,sans-serif" font-size="11" fill="#9CA3AF">2,200+ claims scored across 10 oil &amp; gas majors</text>
-  <text x="952" y="618" font-family="system-ui,sans-serif" font-size="11" fill="#9CA3AF">claimify-esg.vercel.app</text>
+  <!-- ── Footer strip ── -->
+  <rect y="598" width="1200" height="32" fill="white"/>
+  <rect y="598" width="1200" height="1" fill="#E5E7EB"/>
+  <text x="252" y="619" font-family="system-ui,sans-serif" font-size="11" fill="#9CA3AF">2,200+ claims scored across 10 oil &amp; gas majors</text>
+  <text x="940" y="619" font-family="system-ui,sans-serif" font-size="11" fill="#9CA3AF">claimify-esg.vercel.app</text>
 
 </svg>
