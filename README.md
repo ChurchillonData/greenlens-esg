@@ -48,10 +48,10 @@ cp .env.example .env          # add OPENAI_API_KEY and GUARDIAN_API_KEY
 Run the full pipeline:
 
 ```bash
-python -m greenlens.ingestion.download_reports
-python -m greenlens.retrieval.run_retrieval
-python -m greenlens.scoring.run_scoring
-python -m greenlens.scoring.run_rationale
+python -m claimify.ingestion.download_reports
+python -m claimify.retrieval.run_retrieval
+python -m claimify.scoring.run_scoring
+python -m claimify.scoring.run_rationale
 python gen_frontend_data.py
 ```
 
@@ -64,7 +64,7 @@ docker compose up --build     # serves frontend at http://localhost:8080
 ## Project structure
 
 ```
-src/greenlens/
+src/claimify/
   ingestion/    PDF download and parsing, NGO feed fetching
   nlp/          Sentence splitting, ClimateBERT filter, claim extraction
   retrieval/    Corpus building, SBERT embeddings, reranking

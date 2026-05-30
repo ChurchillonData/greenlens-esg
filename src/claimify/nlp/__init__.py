@@ -1,0 +1,1 @@
+"""Stage 2: NLP processing (sentence splitting, relevance filtering, claim extraction)."""

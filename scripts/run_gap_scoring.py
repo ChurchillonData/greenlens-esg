@@ -20,8 +20,8 @@ import numpy as np
 from openai import OpenAI
 from sentence_transformers import SentenceTransformer
 
-from greenlens.config import CONFIG, get_api_key
-from greenlens.retrieval import rerank, sbert_search
+from claimify.config import CONFIG, get_api_key
+from claimify.retrieval import rerank, sbert_search
 
 # ---------------------------------------------------------------------------
 # Config

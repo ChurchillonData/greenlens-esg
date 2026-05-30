@@ -1,1 +1,0 @@
-"""Stage 4: scoring and rationale generation."""

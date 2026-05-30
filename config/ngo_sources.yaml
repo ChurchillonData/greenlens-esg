@@ -2,8 +2,8 @@
 #
 # Hand-picked rather than scraped. Quality over quantity.
 # Add or remove entries here, then re-run:
-#   python -m greenlens.ingestion.fetch_ngo          (fetches live body text)
-#   python -m greenlens.ingestion.fetch_ngo --dry-run (titles only)
+#   python -m claimify.ingestion.fetch_ngo          (fetches live body text)
+#   python -m claimify.ingestion.fetch_ngo --dry-run (titles only)
 #
 # BP and Shell Reclaim Finance assessments are loaded as PDFs from
 # data/evidence/reclaim_finance/ — no YAML entries needed for those.

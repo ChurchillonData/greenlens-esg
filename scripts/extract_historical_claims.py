@@ -19,7 +19,7 @@ from openai import OpenAI
 from pdfminer.high_level import extract_text_to_fp
 from pdfminer.layout import LAParams
 
-from greenlens.config import get_api_key
+from claimify.config import get_api_key
 
 # ---------------------------------------------------------------------------
 # Paths

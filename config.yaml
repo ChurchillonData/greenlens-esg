@@ -1,4 +1,4 @@
-# GreenLens settings. Secrets live in .env, not here.
+# Claimify settings. Secrets live in .env, not here.
 
 paths:
   reports_raw: data/raw/reports
