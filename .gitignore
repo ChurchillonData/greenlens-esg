@@ -24,6 +24,9 @@ frontend/dist/
 frontend/node_modules/
 
 # Generated pipeline outputs (run scripts/ to regenerate)
+data/raw/
+data/processed/
+data/evidence/
 data/outputs/
 data/historical/*.pdf
 data/historical/claims/
