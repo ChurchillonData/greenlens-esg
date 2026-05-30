@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "node scripts/gen-og.mjs && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -16,6 +16,7 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
     "@vitejs/plugin-react": "^4.3.1",
     "autoprefixer": "^10.4.20",
     "playwright": "^1.60.0",

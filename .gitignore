@@ -40,5 +40,8 @@ data/eval/rationale_sample.txt
 *.jpeg
 *.jpg
 
+# Generated at build time
+frontend/public/og-image.png
+
 # Logs
 *.log
