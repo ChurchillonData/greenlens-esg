@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Claimify ESG — Technical Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+@page { size: A4 portrait; margin: 0; }
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 9.5pt;
+  line-height: 1.65;
+  color: #111827;
+  background: #CBD5E1;
+}
+
+.page {
+  width: 210mm;
+  min-height: 297mm;
+  background: white;
+  margin: 0 auto 28px;
+  padding: 20mm 21mm 16mm;
+  box-shadow: 0 6px 32px rgba(0,0,0,0.14);
+  page-break-after: always;
+  position: relative;
+  overflow: hidden;
+}
+
+h1 { font-size: 26pt; font-weight: 700; line-height: 1.15; color: #111827; letter-spacing: -0.02em; }
+h2 { font-size: 11pt; font-weight: 600; color: #1F3A2E; margin: 16px 0 7px; letter-spacing: -0.01em; }
+h3 { font-size: 9.5pt; font-weight: 600; color: #374151; margin: 11px 0 4px; }
+p  { margin-bottom: 9px; color: #374151; font-size: 9.5pt; line-height: 1.65; }
+ul { margin: 5px 0 9px 18px; }
+li { margin-bottom: 3px; font-size: 9.5pt; color: #374151; line-height: 1.6; }
+hr { border: none; border-top: 1px solid #E5E7EB; margin: 12px 0; }
+strong { color: #111827; }
+code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 7.8pt;
+  background: #F3F4F6;
+  padding: 1px 5px;
+  border-radius: 3px;
+  color: #374151;
+}
+
+.sec { display: flex; align-items: center; gap: 8px; margin-bottom: 2px; }
+.sec-pill {
+  display: inline-block;
+  background: #1F3A2E;
+  color: white;
+  font-size: 7pt;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 20px;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
+
+.stripe { position: absolute; top: 0; left: 0; right: 0; height: 5px; background: #1F3A2E; }
+
+.cover-rule { width: 44px; height: 4px; background: #1F3A2E; border-radius: 2px; margin: 18px 0 16px; }
+.cover-meta { display: flex; gap: 22px; margin-top: 6px; }
+.cover-meta span { font-size: 8.5pt; color: #9CA3AF; }
+.cover-meta strong { color: #6B7280; font-weight: 500; }
+
+.stats-row { display: flex; gap: 9px; margin: 20px 0 18px; }
+.stat-card { flex: 1; border: 1px solid #E5E7EB; border-radius: 9px; padding: 12px 10px 10px; text-align: center; }
+.stat-num   { font-size: 18pt; font-weight: 700; color: #1F3A2E; line-height: 1.1; letter-spacing: -0.02em; }
+.stat-label { font-size: 7pt; color: #9CA3AF; margin-top: 3px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
+.stat-sub   { font-size: 7pt; color: #6B7280; margin-top: 2px; }
+
+.code-window { border: 1px solid #E5E7EB; border-radius: 9px; overflow: hidden; margin: 9px 0; }
+.code-chrome { background: #F2F2F2; padding: 6px 11px; display: flex; align-items: center; gap: 5px; border-bottom: 1px solid #E5E7EB; }
+.dot   { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.dot-r { background: #FF5F57; }
+.dot-y { background: #FEBC2E; }
+.dot-g { background: #28C840; }
+.code-filename { margin-left: 7px; font-family: 'JetBrains Mono', monospace; font-size: 7.5pt; color: #8A8A8A; }
+pre.code-body {
+  background: white;
+  padding: 11px 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 7.8pt;
+  line-height: 1.65;
+  white-space: pre;
+  overflow-x: auto;
+  color: #383A42;
+  tab-size: 4;
+}
+.kw { color: #A626A4; }
+.fn { color: #4078F2; }
+.st { color: #50A14F; }
+.cm { color: #A0A1A7; font-style: italic; }
+.nm { color: #986801; }
+.ty { color: #C18401; }
+.bi { color: #E45649; }
+.op { color: #0184BC; }
+
+table { width: 100%; border-collapse: collapse; margin: 7px 0 11px; font-size: 8.5pt; }
+thead th { background: #F9FAFB; text-align: left; padding: 6px 9px; font-weight: 600; color: #374151; border-bottom: 1.5px solid #E5E7EB; font-size: 8pt; }
+tbody td  { padding: 5px 9px; border-bottom: 1px solid #F3F4F6; color: #374151; vertical-align: top; }
+tbody tr:last-child td { border-bottom: none; }
+
+.callout      { border-left: 3px solid #1F3A2E; background: #F0FDF4; padding: 8px 12px; border-radius: 0 6px 6px 0; margin: 10px 0; }
+.callout p    { margin: 0; font-size: 8.8pt; color: #166534; line-height: 1.55; }
+.callout-warn { border-left: 3px solid #D97706; background: #FFFBEB; padding: 8px 12px; border-radius: 0 6px 6px 0; margin: 10px 0; }
+.callout-warn p { margin: 0; font-size: 8.8pt; color: #92400E; line-height: 1.55; }
+
+.two-col   { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+.three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+
+.badge    { display: inline-block; padding: 1px 7px; border-radius: 20px; font-size: 7.5pt; font-weight: 600; white-space: nowrap; }
+.badge-ws { background: #D1FAE5; color: #065F46; }
+.badge-wk { background: #FEF3C7; color: #92400E; }
+.badge-ct { background: #FEE2E2; color: #991B1B; }
+
+.matrix { display: grid; grid-template-columns: 115px repeat(3, 1fr); gap: 3px; margin: 8px 0; }
+.mx-corner  { display: flex; align-items: flex-end; padding-bottom: 3px; }
+.mx-col-hdr { font-size: 7pt; font-weight: 600; color: #6B7280; text-align: center; padding: 3px 2px; }
+.mx-row-lbl { font-size: 7.5pt; font-weight: 500; color: #374151; display: flex; align-items: center; padding-right: 5px; line-height: 1.3; }
+.mx-cell    { text-align: center; padding: 5px 4px; border-radius: 5px; font-size: 10.5pt; font-weight: 700; }
+.mx-tp   { background: #D1FAE5; color: #065F46; }
+.mx-fp   { background: #FEF3C7; color: #92400E; }
+.mx-zero { background: #F3F4F6; color: #9CA3AF; }
+
+.vbar-wrap { display: flex; border-radius: 6px; overflow: hidden; height: 18px; margin: 6px 0; }
+.vbar-seg  { display: flex; align-items: center; justify-content: center; font-size: 7pt; font-weight: 700; color: white; }
+
+.ui-frame  { border: 1px solid #E5E7EB; border-radius: 9px; overflow: hidden; margin: 9px 0; }
+.ui-chrome { background: #F0F0F0; padding: 6px 11px; display: flex; align-items: center; gap: 6px; border-bottom: 1px solid #E5E7EB; }
+.ui-url    { flex: 1; background: white; border: 1px solid #E5E7EB; border-radius: 4px; padding: 2px 9px; font-family: 'JetBrains Mono', monospace; font-size: 7.5pt; color: #6B7280; }
+
+.page-foot { position: absolute; bottom: 10mm; left: 21mm; right: 21mm; display: flex; justify-content: space-between; font-size: 7.5pt; color: #9CA3AF; border-top: 1px solid #F3F4F6; padding-top: 5px; }
+
+@media print {
+  body { background: white; }
+  .page { box-shadow: none; margin: 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ PAGE 1: Cover ══════════════════════════════ -->
+<section class="page">
+  <div style="position:absolute;top:0;left:0;right:0;height:6px;background:#1F3A2E;"></div>
+
+  <div style="margin-top:22px;">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;">
+      <svg width="34" height="34" viewBox="0 0 32 32">
+        <rect width="32" height="32" rx="7" fill="#1F3A2E"/>
+        <path d="M16 5C10 7 6 12 6 18C6 24 10 28 16 28C22 28 26 24 26 18C26 12 22 7 16 5Z" fill="#FACC15"/>
+        <line x1="16" y1="8" x2="16" y2="27" stroke="#1F3A2E" stroke-width="1.8" stroke-linecap="round"/>
+        <line x1="16" y1="15" x2="12" y2="18" stroke="#1F3A2E" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="16" y1="19" x2="20" y2="22" stroke="#1F3A2E" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+      <span style="font-size:9pt;font-weight:700;color:#1F3A2E;letter-spacing:0.08em;text-transform:uppercase;">Claimify ESG</span>
+      <span style="background:#1F3A2E;color:white;font-size:6.5pt;font-weight:800;padding:2px 8px;border-radius:20px;letter-spacing:0.1em;">ESG</span>
+    </div>
+
+    <div class="cover-rule"></div>
+    <h1 style="max-width:470px;">Automated Greenwashing Detection for Oil &amp; Gas Sustainability Reporting</h1>
+    <p style="margin-top:9px;font-size:10pt;color:#6B7280;max-width:440px;line-height:1.6;">A RAG pipeline that classifies corporate climate claims against NGO evidence, with a traceable rationale for every verdict and a historical pledge tracker measuring follow-through.</p>
+
+    <div class="cover-meta" style="margin-top:12px;">
+      <span><strong>Version</strong> 1.0</span>
+      <span><strong>Date</strong> May 2026</span>
+      <span><strong>Author</strong> Churchill Yiadom-Boakye</span>
+      <span><strong>Stack</strong> Python / React / Vercel</span>
+    </div>
+  </div>
+
+  <div class="stats-row" style="margin-top:24px;">
+    <div class="stat-card">
+      <div class="stat-num">2,203</div>
+      <div class="stat-label">Claims scored</div>
+      <div class="stat-sub">10 oil &amp; gas majors</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">86.7%</div>
+      <div class="stat-label">Accuracy</div>
+      <div class="stat-sub">52 / 60 eval set</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">710</div>
+      <div class="stat-label">Historical pledges</div>
+      <div class="stat-sub">2021 reports tracked</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">290</div>
+      <div class="stat-label">Evidence chunks</div>
+      <div class="stat-sub">7 NGO sources + Guardian</div>
+    </div>
+  </div>
+
+  <hr style="margin:18px 0;" />
+
+  <h2 style="margin-top:0;">Abstract</h2>
+  <p>Corporate sustainability reports are structurally difficult to audit. Claims range from specific quantified commitments ("reduced Scope 1 emissions by 37% against our 2019 baseline") to vague aspiration ("we support the energy transition"). Claimify is a <strong>RAG (Retrieval-Augmented Generation)</strong> pipeline that scores each claim against a curated NGO evidence corpus rather than relying on the LLM's training weights alone. Retrieval gives the model citable, up-to-date source material for each claim; generation produces a structured verdict grounded in that material, not in generalities about the sector.</p>
+  <p>The pipeline has five stages: PDF ingestion, NLP filtering (ClimateBERT + GPT-4o structured extraction), two-stage retrieval (SBERT shortlisting + cross-encoder reranking), LLM scoring (a structured two-step prompt), and materiality adjustment (category-specific multipliers). A separate Commitment Tracker layer reuses the same retrieval stack to score 2021 pledges against 2023-2025 NGO evidence, measuring how much follow-through happened.</p>
+  <p>The pipeline runs entirely offline. No API calls happen at read time. The frontend reads two pre-generated JSON files, served as static files on Vercel.</p>
+
+  <div style="margin-top:12px;padding:11px 13px;background:#F9FAFB;border-radius:8px;border:1px solid #E5E7EB;">
+    <div style="font-size:7pt;font-weight:700;color:#9CA3AF;letter-spacing:0.07em;text-transform:uppercase;margin-bottom:7px;">Pipeline stages</div>
+    <div style="display:flex;align-items:center;gap:5px;flex-wrap:wrap;font-size:8pt;color:#374151;line-height:2.2;">
+      <span style="background:#ECFDF5;border:1px solid #6EE7B7;padding:1px 8px;border-radius:20px;font-weight:500;">PDF download</span>
+      <span style="color:#9CA3AF;">&#8594;</span>
+      <span style="background:#ECFDF5;border:1px solid #6EE7B7;padding:1px 8px;border-radius:20px;font-weight:500;">pdfminer parse</span>
+      <span style="color:#9CA3AF;">&#8594;</span>
+      <span style="background:#DBEAFE;border:1px solid #93C5FD;padding:1px 8px;border-radius:20px;font-weight:500;">ClimateBERT filter</span>
+      <span style="color:#9CA3AF;">&#8594;</span>
+      <span style="background:#DBEAFE;border:1px solid #93C5FD;padding:1px 8px;border-radius:20px;font-weight:500;">GPT-4o extract</span>
+      <span style="color:#9CA3AF;">&#8594;</span>
+      <span style="background:#EDE9FE;border:1px solid #C4B5FD;padding:1px 8px;border-radius:20px;font-weight:500;">SBERT + rerank</span>
+      <span style="color:#9CA3AF;">&#8594;</span>
+      <span style="background:#FEF9C3;border:1px solid #FDE047;padding:1px 8px;border-radius:20px;font-weight:500;">GPT-4o-mini score</span>
+      <span style="color:#9CA3AF;">&#8594;</span>
+      <span style="background:#F3F4F6;border:1px solid #D1D5DB;padding:1px 8px;border-radius:20px;font-weight:500;">Materiality weight</span>
+      <span style="color:#9CA3AF;">&#8594;</span>
+      <span style="background:#F3F4F6;border:1px solid #D1D5DB;padding:1px 8px;border-radius:20px;font-weight:500;">React / Vercel</span>
+    </div>
+  </div>
+
+  <div class="page-foot">
+    <span>Claimify ESG — Technical Report</span>
+    <span>Page 1 of 9</span>
+  </div>
+</section>
+
+
+<!-- ══ PAGE 2: Background ════════════════════════ -->
+<section class="page">
+  <div class="stripe"></div>
+
+  <div class="sec" style="margin-top:4px;"><span class="sec-pill">01</span><h2 style="margin:0;">Background and Design Decisions</h2></div>
+
+  <p>Oil and gas sustainability reports are written for multiple audiences at once: shareholder, regulator, and general public. The language reflects this. The same company can, on the same page, disclose a precise Scope 1 reduction figure and an unfalsifiable aspiration in the next paragraph. Distinguishing between these is not a keyword problem or a sentiment problem. It requires knowing whether a claim makes a falsifiable factual assertion and, separately, whether available evidence refutes it.</p>
+
+  <p>Existing approaches had a shared gap: they either flagged anything containing "net-zero" or "carbon neutral" (keyword matching) or relied on journalists manually cross-referencing company statements with NGO reports. Neither approach scales, and neither produces a traceable reasoning chain. This pipeline is the automation of that intermediate layer.</p>
+
+  <p>The choice to use RAG rather than a prompt-only classifier is deliberate. LLM training weights are frozen at a cutoff date and do not contain the specific Carbon Tracker reports, Reclaim Finance assessments, or InfluenceMap briefings that contradict individual company claims. Giving the model that material at inference time means every verdict can be traced back to specific retrieved documents, not to generalised knowledge about the sector.</p>
+
+  <h3>Architectural decisions and their reasons</h3>
+
+  <table>
+    <thead><tr><th>Decision</th><th>Why we made it</th><th>What we accepted in exchange</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Offline batch, not live API</strong></td>
+        <td>All scoring runs once per ingestion cycle. The frontend reads a static JSON file. No cost per page-view, no failure modes at read time.</td>
+        <td>New reports need a full pipeline re-run. There is no live update between cycles.</td>
+      </tr>
+      <tr>
+        <td><strong>Two-step LLM scoring</strong></td>
+        <td>A single-step prompt that asked the model to weigh evidence and classify simultaneously inflated the <em>contradicted</em> rate whenever NGO evidence was critical, even for well-quantified claims. Separating the two decisions fixed it.</td>
+        <td>Two LLM calls per claim rather than one.</td>
+      </tr>
+      <tr>
+        <td><strong>ClimateBERT before GPT-4o</strong></td>
+        <td>A 310-page PDF produces thousands of sentences. Running GPT-4o over all of them is expensive and introduces noise. ClimateBERT drops roughly 65% of sentences before extraction, cheaply and locally.</td>
+        <td>ClimateBERT misclassifies a small fraction of climate sentences as off-topic and drops them permanently.</td>
+      </tr>
+      <tr>
+        <td><strong>Company-scoped retrieval</strong></td>
+        <td>Each corpus chunk carries an <code>applies_to</code> field listing relevant company IDs. Retrieval filters by this before cosine search so BP evidence never surfaces for a Shell claim.</td>
+        <td>Cross-company sector patterns must be duplicated into each company's scope list manually.</td>
+      </tr>
+      <tr>
+        <td><strong>Materiality multipliers</strong></td>
+        <td>A net-zero claim and a biodiversity mention with the same raw LLM score carry different reputational and legal risk. The multipliers encode this as an explicit, version-controlled domain judgement rather than leaving it implicit.</td>
+        <td>The multiplier values are not empirically calibrated. They are expert judgement and should be revisited.</td>
+      </tr>
+      <tr>
+        <td><strong>gpt-4o-mini, not gpt-4o</strong></td>
+        <td>Roughly 10x cheaper per token at comparable accuracy on structured JSON classification. The prompt examples are the primary quality driver; the model choice is a cost trade-off once the eval bar is met.</td>
+        <td>Higher error rate on edge cases in the well/weakly boundary.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <p><strong>ClimateBERT on Windows subprocesses:</strong> The Commitment Tracker extracts historical claims in a background subprocess. On Windows, PyTorch DLL loading fails in that context. The Tracker substitutes a keyword regex filter for ClimateBERT. The main ingestion pipeline, which runs in the foreground, keeps ClimateBERT. This is a platform limitation, not a design choice, and is noted in the codebase.</p>
+  </div>
+
+  <div class="page-foot">
+    <span>Claimify ESG — Technical Report</span>
+    <span>Page 2 of 9</span>
+  </div>
+</section>
+
+
+<!-- ══ PAGE 3: Architecture Diagram ═════════════ -->
+<section class="page">
+  <div class="stripe"></div>
+
+  <div class="sec" style="margin-top:4px;"><span class="sec-pill">02</span><h2 style="margin:0;">System Architecture</h2></div>
+  <p style="margin-bottom:6px;font-size:9pt;">Two input streams meet at the retrieval stage. The <strong>claims stream</strong> processes sustainability PDFs through the NLP pipeline and produces structured claims. The <strong>evidence stream</strong> ingests NGO sources and builds a vector index. Both feed the RAG retrieval and scoring pipeline. A separate <strong>Commitment Tracker branch</strong> (dashed, bottom-left) reuses the same retrieval infrastructure with 2021 historical pledges as its input instead of current claims.</p>
+
+  <svg viewBox="0 0 660 634" width="100%" xmlns="http://www.w3.org/2000/svg" style="font-family:'Inter',system-ui,sans-serif;display:block;">
+    <defs>
+      <marker id="ar"  markerWidth="7" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0,7 3,0 6" fill="#9CA3AF"/></marker>
+      <marker id="arb" markerWidth="7" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0,7 3,0 6" fill="#7C3AED"/></marker>
+      <marker id="aro" markerWidth="7" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0,7 3,0 6" fill="#D97706" opacity="0.7"/></marker>
+    </defs>
+
+    <!-- CLAIMS STREAM -->
+    <rect x="2"  y="6"  width="294" height="48" rx="8" fill="#ECFDF5" stroke="#6EE7B7" stroke-width="1.4"/>
+    <text x="149" y="25"  text-anchor="middle" font-size="10" font-weight="600" fill="#065F46">10 Sustainability Reports (PDF)</text>
+    <text x="149" y="44"  text-anchor="middle" font-size="8.5" fill="#6B7280">BP / Shell / Chevron / ExxonMobil / TotalEnergies + 5 more</text>
+
+    <line x1="149" y1="54"  x2="149" y2="72"  stroke="#9CA3AF" stroke-width="1.3" marker-end="url(#ar)"/>
+
+    <rect x="2"  y="74"  width="294" height="44" rx="8" fill="#F9FAFB" stroke="#D1D5DB" stroke-width="1"/>
+    <text x="149" y="92"  text-anchor="middle" font-size="10" font-weight="600" fill="#374151">pdfminer.six (page-by-page extraction)</text>
+    <text x="149" y="110" text-anchor="middle" font-size="8.5" fill="#9CA3AF">LAParams tuned for multi-column corporate layouts</text>
+
+    <line x1="149" y1="118" x2="149" y2="136" stroke="#9CA3AF" stroke-width="1.3" marker-end="url(#ar)"/>
+
+    <rect x="2"  y="138" width="294" height="46" rx="8" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1.4"/>
+    <text x="149" y="157" text-anchor="middle" font-size="10" font-weight="600" fill="#1D4ED8">ClimateBERT (distilroberta-base-climate-detector)</text>
+    <text x="149" y="175" text-anchor="middle" font-size="8.5" fill="#3B82F6">batch=32 / label 1 = climate-relevant / drops ~65% of sentences</text>
+
+    <line x1="149" y1="184" x2="149" y2="202" stroke="#9CA3AF" stroke-width="1.3" marker-end="url(#ar)"/>
+
+    <rect x="2"  y="204" width="294" height="46" rx="8" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1.4"/>
+    <text x="149" y="223" text-anchor="middle" font-size="10" font-weight="600" fill="#1D4ED8">GPT-4o (structured claim extraction)</text>
+    <text x="149" y="241" text-anchor="middle" font-size="8.5" fill="#3B82F6">category / scope / deadline_year / target_value / batch=15</text>
+
+    <line x1="149" y1="250" x2="149" y2="270" stroke="#9CA3AF" stroke-width="1.3" marker-end="url(#ar)"/>
+
+    <rect x="22" y="272" width="256" height="32" rx="6" fill="#F3F4F6" stroke="#D1D5DB" stroke-width="1"/>
+    <text x="150" y="284" text-anchor="middle" font-size="9" font-weight="600" fill="#374151">claims.jsonl + SBERT embed</text>
+    <text x="150" y="297" text-anchor="middle" font-size="8"   fill="#9CA3AF">all-mpnet-base-v2 / 768-dim claim vectors</text>
+
+    <!-- EVIDENCE STREAM -->
+    <rect x="364" y="6"  width="294" height="48" rx="8" fill="#ECFDF5" stroke="#6EE7B7" stroke-width="1.4"/>
+    <text x="511" y="25"  text-anchor="middle" font-size="10" font-weight="600" fill="#065F46">7 NGO Sources + Guardian API</text>
+    <text x="511" y="44"  text-anchor="middle" font-size="8.5" fill="#6B7280">Carbon Tracker / InfluenceMap / ClientEarth / TPI + 3 more</text>
+
+    <line x1="511" y1="54"  x2="511" y2="72"  stroke="#9CA3AF" stroke-width="1.3" marker-end="url(#ar)"/>
+
+    <rect x="364" y="74"  width="294" height="44" rx="8" fill="#F9FAFB" stroke="#D1D5DB" stroke-width="1"/>
+    <text x="511" y="92"  text-anchor="middle" font-size="10" font-weight="600" fill="#374151">fetch_ngo.py / fetch_web.py / Guardian API</text>
+    <text x="511" y="110" text-anchor="middle" font-size="8.5" fill="#9CA3AF">HTTP + PDF scraping / applies_to company tagging</text>
+
+    <line x1="511" y1="118" x2="511" y2="136" stroke="#9CA3AF" stroke-width="1.3" marker-end="url(#ar)"/>
+
+    <rect x="364" y="138" width="294" height="44" rx="8" fill="#F9FAFB" stroke="#D1D5DB" stroke-width="1"/>
+    <text x="511" y="156" text-anchor="middle" font-size="10" font-weight="600" fill="#374151">350-word chunks / 50-word overlap</text>
+    <text x="511" y="174" text-anchor="middle" font-size="8.5" fill="#9CA3AF">enables full PDF indexing (74 chunks from Carbon Tracker alone)</text>
+
+    <line x1="511" y1="182" x2="511" y2="200" stroke="#9CA3AF" stroke-width="1.3" marker-end="url(#ar)"/>
+
+    <rect x="364" y="202" width="294" height="44" rx="8" fill="#F9FAFB" stroke="#D1D5DB" stroke-width="1"/>
+    <text x="511" y="220" text-anchor="middle" font-size="10" font-weight="600" fill="#374151">SBERT all-mpnet-base-v2 (embed corpus)</text>
+    <text x="511" y="238" text-anchor="middle" font-size="8.5" fill="#9CA3AF">corpus_vectors.npy / 290 records total</text>
+
+    <!-- Converging arrows to RAG retrieval -->
+    <line x1="149" y1="304" x2="149" y2="326" stroke="#9CA3AF" stroke-width="1.3"/>
+    <line x1="149" y1="326" x2="318" y2="348" stroke="#9CA3AF" stroke-width="1.3" marker-end="url(#ar)"/>
+    <line x1="511" y1="246" x2="511" y2="326" stroke="#9CA3AF" stroke-width="1.3"/>
+    <line x1="511" y1="326" x2="342" y2="348" stroke="#9CA3AF" stroke-width="1.3" marker-end="url(#ar)"/>
+
+    <!-- RAG label on left converging line -->
+    <text x="42" y="345" font-size="7.5" fill="#9CA3AF" font-style="italic">RAG retrieval</text>
+
+    <!-- RETRIEVAL -->
+    <rect x="106" y="350" width="448" height="46" rx="8" fill="#EDE9FE" stroke="#C4B5FD" stroke-width="1.5"/>
+    <text x="330" y="370" text-anchor="middle" font-size="10" font-weight="600" fill="#5B21B6">SBERT ANN search (company-scoped / k=20)</text>
+    <text x="330" y="387" text-anchor="middle" font-size="8.5" fill="#7C3AED">cosine similarity over applies_to-filtered corpus subset</text>
+
+    <line x1="330" y1="396" x2="330" y2="414" stroke="#7C3AED" stroke-width="1.3" marker-end="url(#arb)"/>
+
+    <rect x="106" y="416" width="448" height="46" rx="8" fill="#EDE9FE" stroke="#C4B5FD" stroke-width="1.5"/>
+    <text x="330" y="436" text-anchor="middle" font-size="10" font-weight="600" fill="#5B21B6">cross-encoder/ms-marco-MiniLM-L-6-v2 (rerank to top-5)</text>
+    <text x="330" y="453" text-anchor="middle" font-size="8.5" fill="#7C3AED">pairwise (claim, evidence) attention scoring</text>
+
+    <!-- SCORING -->
+    <line x1="330" y1="462" x2="330" y2="480" stroke="#9CA3AF" stroke-width="1.3" marker-end="url(#ar)"/>
+
+    <rect x="106" y="482" width="448" height="46" rx="8" fill="#FEF9C3" stroke="#FDE047" stroke-width="1.5"/>
+    <text x="330" y="502" text-anchor="middle" font-size="10" font-weight="600" fill="#713F12">GPT-4o-mini (two-step scorer + rationale / T=0 / JSON mode)</text>
+    <text x="330" y="519" text-anchor="middle" font-size="8.5" fill="#92400E">CLAIM + RETRIEVED EVIDENCE in prompt / verdict grounded in docs</text>
+
+    <line x1="330" y1="528" x2="330" y2="546" stroke="#9CA3AF" stroke-width="1.3" marker-end="url(#ar)"/>
+
+    <!-- FRONTEND -->
+    <rect x="196" y="548" width="268" height="34" rx="7" fill="#1F3A2E"/>
+    <text x="330" y="561" text-anchor="middle" font-size="9" font-weight="600" fill="white">Materiality weight  &#8594;  rationales.json</text>
+    <text x="330" y="575" text-anchor="middle" font-size="8.5" font-weight="500" fill="#86EFAC">React / Vite / Vercel static</text>
+
+    <!-- COMMITMENT TRACKER (dashed) -->
+    <rect x="2" y="594" width="294" height="36" rx="8" fill="#FFFBEB" stroke="#FDE68A" stroke-width="1.2" stroke-dasharray="5,3"/>
+    <text x="149" y="609" text-anchor="middle" font-size="9.5" font-weight="600" fill="#92400E">Commitment Tracker branch</text>
+    <text x="149" y="623" text-anchor="middle" font-size="8.5" fill="#B45309">2021 PDFs / keyword filter / 710 pledges / gap scoring</text>
+
+    <line x1="149" y1="582" x2="149" y2="592" stroke="#D97706" stroke-width="1.2" stroke-dasharray="4,3" marker-end="url(#aro)"/>
+  </svg>
+
+  <div class="page-foot">
+    <span>Claimify ESG — Technical Report</span>
+    <span>Page 3 of 9</span>
+  </div>
+</section>
+
+
+<!-- ══ PAGE 4: NLP Pipeline ══════════════════════ -->
+<section class="page">
+  <div class="stripe"></div>
+
+  <div class="sec" style="margin-top:4px;"><span class="sec-pill">03</span><h2 style="margin:0;">NLP Pipeline: Filtering and Extraction</h2></div>
+
+  <p>Before retrieval can happen, the pipeline needs claims. A 300-page corporate sustainability report typically contains thousands of sentences. Most of them are financial tables, legal disclaimers, headers, and general corporate narrative that has nothing to do with climate commitments. Running GPT-4o over all of them would be slow, expensive, and would pull in a lot of noise. Three steps handle this: sentence splitting, ClimateBERT relevance filtering, and structured claim extraction.</p>
+
+  <p>ClimateBERT is the gating step. It runs locally, no API call required, and processes sentences in batches of 32. In practice it drops 60-70% of a typical report. Only what passes goes to GPT-4o for extraction.</p>
+
+  <div class="two-col" style="margin-top:8px;">
+    <div>
+      <h3 style="margin-top:0;">ClimateBERT relevance filter</h3>
+      <div class="code-window">
+        <div class="code-chrome">
+          <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+          <span class="code-filename">nlp/relevance_filter.py</span>
+        </div>
+        <pre class="code-body">MODEL_NAME = (
+    <span class="st">"climatebert/"</span>
+    <span class="st">"distilroberta-base-climate-detector"</span>
+)
+BATCH_SIZE = <span class="nm">32</span>
+
+<span class="kw">def</span> <span class="fn">predict_batch</span>(
+    sentences: list[str]
+) -> list[bool]:
+    tokenizer, model = get_model()
+    inputs = tokenizer(
+        sentences,
+        padding=<span class="kw">True</span>,
+        truncation=<span class="kw">True</span>,
+        max_length=<span class="nm">256</span>,
+        return_tensors=<span class="st">"pt"</span>
+    )
+    <span class="kw">with</span> torch.no_grad():
+        outputs = model(**inputs)
+    preds = torch.argmax(
+        outputs.logits, dim=-<span class="nm">1</span>
+    ).tolist()
+    <span class="cm"># label 1 = climate-relevant</span>
+    <span class="kw">return</span> [p == <span class="nm">1</span> <span class="kw">for</span> p <span class="kw">in</span> preds]</pre>
+      </div>
+    </div>
+
+    <div>
+      <h3 style="margin-top:0;">GPT-4o claim extraction</h3>
+      <div class="code-window">
+        <div class="code-chrome">
+          <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+          <span class="code-filename">nlp/extract_claims.py</span>
+        </div>
+        <pre class="code-body">CATEGORIES = [
+    <span class="st">"net_zero"</span>,
+    <span class="st">"emissions_reduction"</span>,
+    <span class="st">"methane"</span>,
+    <span class="st">"renewables_investment"</span>,
+    <span class="st">"scope_3"</span>,
+    <span class="st">"just_transition"</span>,
+    <span class="st">"biodiversity"</span>,
+    <span class="st">"climate_lobbying"</span>,
+    <span class="st">"other"</span>,
+]
+
+<span class="cm"># Each extracted claim carries:</span>
+<span class="cm"># category, claim_text,</span>
+<span class="cm"># target_value, target_unit,</span>
+<span class="cm"># scope, baseline_year,</span>
+<span class="cm"># deadline_year</span>
+
+BATCH_SIZE = <span class="nm">15</span>  <span class="cm"># sentences per call</span>
+<span class="cm"># Larger batches cause sentence</span>
+<span class="cm"># index drift in the model output</span></pre>
+      </div>
+    </div>
+  </div>
+
+  <hr style="margin:11px 0;" />
+
+  <h3>What each extracted field is used for</h3>
+  <table>
+    <thead><tr><th>Field</th><th>Example</th><th>Downstream use</th></tr></thead>
+    <tbody>
+      <tr><td><code>category</code></td><td>net_zero, scope_3, methane</td><td>Materiality multiplier lookup; Compare and Filter views</td></tr>
+      <tr><td><code>target_value</code> + <code>target_unit</code></td><td>37 / percent_reduction</td><td>Scorer prompt context; Tracker pledge cards</td></tr>
+      <tr><td><code>deadline_year</code></td><td>2030, 2050</td><td>Concrete element detection in scorer; Tracker deadline display</td></tr>
+      <tr><td><code>scope</code></td><td>operated_assets, scope_3</td><td>Scorer checks whether a scope qualifier is present</td></tr>
+      <tr><td><code>baseline_year</code></td><td>2019</td><td>Scorer context (supports concrete element detection)</td></tr>
+      <tr><td><code>page</code></td><td>47</td><td>Source reference shown in the evidence panel</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <p><strong>Why ClimateBERT and not another GPT-4o call?</strong> An early version asked GPT-4o to decide relevance before extraction. It was accurate but doubled the API cost for a task that ClimateBERT handles locally in seconds. The accuracy trade-off at the filter stage is acceptable: a missed sentence means one fewer candidate claim, not a false positive in the final scored output. Precision matters more than recall here.</p>
+  </div>
+
+  <div class="page-foot">
+    <span>Claimify ESG — Technical Report</span>
+    <span>Page 4 of 9</span>
+  </div>
+</section>
+
+
+<!-- ══ PAGE 5: Evidence Retrieval ═══════════════ -->
+<section class="page">
+  <div class="stripe"></div>
+
+  <div class="sec" style="margin-top:4px;"><span class="sec-pill">04</span><h2 style="margin:0;">Evidence Retrieval</h2></div>
+
+  <p>This is the R in RAG. For every claim, the pipeline retrieves the most relevant passages from the NGO evidence corpus before the LLM ever sees it. The model is grounded in specific documents, not in training-weight generalities about oil companies and climate.</p>
+
+  <p>Retrieval uses two stages. SBERT computes cosine similarity across the corpus and returns a top-20 shortlist filtered to the claim's company. The cross-encoder then re-scores every (claim, candidate) pair with full cross-attention, which is significantly more accurate but too slow to run against the full corpus. Top-5 go to the scorer. This two-stage cascade follows the BEIR benchmark's standard pattern.</p>
+
+  <div class="two-col" style="margin-top:6px;">
+    <div>
+      <div class="code-window">
+        <div class="code-chrome">
+          <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+          <span class="code-filename">retrieval/sbert_search.py</span>
+        </div>
+        <pre class="code-body"><span class="kw">def</span> <span class="fn">cosine_scores</span>(
+    claim_vector: np.ndarray,
+    corpus_vectors: np.ndarray
+) -> np.ndarray:
+    <span class="cm"># L2-normalise both sides</span>
+    <span class="cm"># then dot product equals cosine sim</span>
+    cn = claim_vector / np.linalg.norm(
+        claim_vector
+    )
+    vn = corpus_vectors / np.linalg.norm(
+        corpus_vectors,
+        axis=<span class="nm">1</span>, keepdims=<span class="kw">True</span>
+    )
+    <span class="kw">return</span> vn <span class="op">@</span> cn
+
+<span class="kw">def</span> <span class="fn">search</span>(
+    claim_vector, company_id, k=<span class="nm">20</span>
+):
+    records, vectors = load_index()
+    scores = cosine_scores(
+        claim_vector, vectors
+    )
+    r, s = filter_by_company(
+        records, scores, company_id
+    )
+    <span class="kw">return</span> top_k(r, s, k)</pre>
+      </div>
+    </div>
+
+    <div>
+      <div class="code-window">
+        <div class="code-chrome">
+          <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+          <span class="code-filename">retrieval/rerank.py</span>
+        </div>
+        <pre class="code-body">MODEL = (
+    <span class="st">"cross-encoder/"</span>
+    <span class="st">"ms-marco-MiniLM-L-6-v2"</span>
+)
+
+<span class="kw">def</span> <span class="fn">rerank</span>(
+    claim_text: str,
+    candidates: list,
+    top_n: int = <span class="nm">5</span>
+) -> list:
+    pairs = [
+        (claim_text, rec[<span class="st">"text"</span>][:<span class="nm">512</span>])
+        <span class="kw">for</span> rec, _ <span class="kw">in</span> candidates
+    ]
+    scores = get_model().predict(pairs)
+    paired = <span class="bi">list</span>(<span class="bi">zip</span>(
+        [r <span class="kw">for</span> r, _ <span class="kw">in</span> candidates],
+        scores
+    ))
+    paired.sort(key=<span class="kw">lambda</span> x: -x[<span class="nm">1</span>])
+    <span class="kw">return</span> paired[:top_n]</pre>
+      </div>
+    </div>
+  </div>
+
+  <hr style="margin:10px 0;" />
+
+  <div class="two-col">
+    <div>
+      <h3>Corpus composition (290 records)</h3>
+      <table>
+        <thead><tr><th>Source</th><th>Records</th><th>Type</th></tr></thead>
+        <tbody>
+          <tr><td>The Guardian</td><td>152</td><td>News articles via paginated API</td></tr>
+          <tr><td>Carbon Tracker</td><td>74</td><td>PDF chunks from 3 reports</td></tr>
+          <tr><td>Reclaim Finance</td><td>37</td><td>PDF chunks (28) + press releases (9)</td></tr>
+          <tr><td>InfluenceMap</td><td>6</td><td>PDF chunks</td></tr>
+          <tr><td>TPI</td><td>9</td><td>Company assessment pages</td></tr>
+          <tr><td>ClientEarth</td><td>6</td><td>Press releases</td></tr>
+          <tr><td>Global Witness</td><td>6</td><td>Press releases</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div>
+      <h3>Source credibility weights</h3>
+      <table>
+        <thead><tr><th>Source</th><th>Weight</th><th>Basis</th></tr></thead>
+        <tbody>
+          <tr><td>InfluenceMap</td><td><strong>0.95</strong></td><td>Primary quantitative analysis</td></tr>
+          <tr><td>Carbon Tracker</td><td><strong>0.95</strong></td><td>Paris-alignment modelling</td></tr>
+          <tr><td>TPI</td><td>0.92</td><td>LSE-backed management scores</td></tr>
+          <tr><td>ClientEarth</td><td>0.90</td><td>Litigation-grade sourcing</td></tr>
+          <tr><td>Reclaim Finance</td><td>0.88</td><td>Company-specific PDF assessments</td></tr>
+          <tr><td>Global Witness</td><td>0.85</td><td>Investigative journalism</td></tr>
+          <tr><td>Guardian</td><td>0.75</td><td>General environment desk</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="callout">
+    <p><strong>Why PDF chunking mattered:</strong> Early corpus versions stored whole PDFs as single records. SBERT's 512-token limit meant the model was scoring a truncated fragment of a 30-page report. Switching to 350-word chunks with 50-word overlap grew the Carbon Tracker representation from 3 records to 74 and measurably improved retrieval on Scope 3 claims, where the contradicting evidence tends to appear in the body of a technical appendix rather than the introduction.</p>
+  </div>
+
+  <div class="page-foot">
+    <span>Claimify ESG — Technical Report</span>
+    <span>Page 5 of 9</span>
+  </div>
+</section>
+
+
+<!-- ══ PAGE 6: RAG Differentiators ══════════════ -->
+<section class="page">
+  <div class="stripe"></div>
+
+  <div class="sec" style="margin-top:4px;"><span class="sec-pill">05.A</span><h2 style="margin:0;">What Makes This RAG Non-Standard</h2></div>
+
+  <p>The core mechanics are off the shelf: SBERT embeds, cosine ANN shortlists, cross-encoder reranks, GPT-4o-mini generates. That part is documented in a dozen tutorials. The differentiation is in the four design decisions layered on top of the retrieval stack, each motivated by a specific failure we observed rather than a preference for complexity.</p>
+
+  <div style="margin:10px 0 6px;">
+    <table>
+      <thead>
+        <tr><th style="width:30%;">Generic RAG</th><th style="width:30%;">Claimify RAG</th><th>Why the change was necessary</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Retrieve from full corpus</td>
+          <td><strong>Company-scoped retrieval</strong></td>
+          <td>Without it, a BP claim retrieved Shell methane documents and scored incorrectly. The <code>applies_to</code> field narrows the candidate pool to company-relevant evidence before SBERT runs. Cross-company contamination in a flat corpus is invisible until you inspect individual retrieved passages.</td>
+        </tr>
+        <tr>
+          <td>Single LLM call: classify and cite</td>
+          <td><strong>Two-step classification</strong></td>
+          <td>Early single-step prompts inflated <span class="badge badge-ct">contradicted</span> verdicts. The model treated NGO criticism as evidence of falsity even when it was sector-wide, not company-specific. Splitting into two questions — well/weakly from claim text alone, then contradicted from evidence — dropped the false-contradicted rate and improved accuracy by roughly 12 percentage points in the v3 iteration.</td>
+        </tr>
+        <tr>
+          <td>All documents treated equally</td>
+          <td><strong>Credibility-weighted corpus</strong></td>
+          <td>InfluenceMap and Carbon Tracker produce primary quantitative analysis. A Guardian environment desk article and a Carbon Tracker financial model should not score equally in reranking. Credibility weights (0.75 to 0.95) scale the cross-encoder score before top-5 selection, so higher-quality evidence is promoted without being the only factor.</td>
+        </tr>
+        <tr>
+          <td>Single retrieval loop per query</td>
+          <td><strong>Second-order temporal loop</strong></td>
+          <td>The Commitment Tracker runs the same retrieval stack a second time with a different query direction: the input is a 2021 pledge, the evidence pool is the 2023-2025 NGO corpus. The LLM is asked not "is this claim supported?" but "has this commitment been kept?" The retrieval mechanics are identical; the epistemology is different. This made temporal accountability scoring possible without building a separate system.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout-warn">
+    <p><strong>What this pipeline does not do:</strong> The SBERT model is used as-is from HuggingFace. There is no fine-tuning on climate domain text. Retrieval runs in-memory with numpy cosine similarity, not a vector database. There is no HyDE, no self-querying, no iterative retrieval loop. Each of these would likely improve retrieval quality further, but they also increase complexity and inference cost. The current architecture was sized to run offline on a single machine and stay within a predictable API cost budget per pipeline run.</p>
+  </div>
+
+  <h3 style="margin-top:12px;">Where the accuracy gains actually came from</h3>
+  <p>The four design decisions above are not equally important. In practice, two changes drove almost all of the accuracy improvement from the initial 78.3% baseline to the current 86.7%:</p>
+
+  <div class="two-col" style="margin-top:6px;">
+    <div style="border:1px solid #E5E7EB;border-radius:8px;padding:11px 12px;">
+      <div style="font-size:7.5pt;font-weight:700;color:#1F3A2E;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:5px;">Two-step classification rule</div>
+      <p style="margin:0;font-size:8.5pt;line-height:1.65;">The largest single jump was 73.3% to 83.3% when the prompt was restructured to separate the well/weakly decision from the contradicted check. This is not a retrieval improvement; it is a prompt design improvement. The model's tendency to conflate "NGO criticises company" with "claim is false" was the dominant error mode, and separating the two questions removed it.</p>
+    </div>
+    <div style="border:1px solid #E5E7EB;border-radius:8px;padding:11px 12px;">
+      <div style="font-size:7.5pt;font-weight:700;color:#1F3A2E;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:5px;">PDF chunking (350-word / 50-word overlap)</div>
+      <p style="margin:0;font-size:8.5pt;line-height:1.65;">The second significant jump was 83.3% to 88.3% after PDF chunking. Whole-PDF records truncated at SBERT's 512-token limit, so the model was often embedding a fragment of a title page rather than the technical content. Chunking grew Carbon Tracker from 3 to 74 retrievable records. Scope 3 claims in particular improved because the contradicting evidence typically appears in appendices, not introductions.</p>
+    </div>
+  </div>
+
+  <p style="margin-top:9px;">Company-scoped retrieval and credibility weights are correctness guardrails rather than accuracy drivers. They prevent specific failure modes (cross-company contamination, low-quality source promotion) rather than lifting the average. The corpus weighting has not been ablated formally; it is possible the accuracy contribution is smaller than expected.</p>
+
+  <div class="page-foot">
+    <span>Claimify ESG — Technical Report</span>
+    <span>Page 6 of 9</span>
+  </div>
+</section>
+
+
+<!-- ══ PAGE 7: Classification ═══════════════════ -->
+<section class="page">
+  <div class="stripe"></div>
+
+  <div class="sec" style="margin-top:4px;"><span class="sec-pill">05</span><h2 style="margin:0;">Claim Classification and GreenSignal Score</h2></div>
+
+  <p>Once retrieval has selected top-5 evidence passages, both the claim text and those passages are passed to <code>gpt-4o-mini</code> in a single prompt. The model returns a class, a risk score, and a short reasoning string. A second LLM call to the rationale generator then produces the user-facing explanation and decision trace, also grounded in the same evidence. This second call is what turns a classifier output into something an analyst can actually read and check.</p>
+
+  <p>The scoring prompt went through several iterations. The key structural insight was that asking the model to weigh evidence and decide classification at the same time caused it to treat NGO criticism as a signal to downgrade claims from <span class="badge badge-ws">well_substantiated</span> to <span class="badge badge-wk">weakly_substantiated</span>. That conflated two different questions. The fix was explicit: decide the well/weakly split from the claim text alone first, then and only then check whether the evidence bar for <span class="badge badge-ct">contradicted</span> is met.</p>
+
+  <div class="two-col" style="margin-top:6px;">
+    <div>
+      <div class="code-window">
+        <div class="code-chrome">
+          <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+          <span class="code-filename">scoring/llm_scorer.py</span>
+        </div>
+        <pre class="code-body"><span class="kw">def</span> <span class="fn">build_user_prompt</span>(
+    claim_text: str,
+    evidence: list[dict]
+) -> str:
+    <span class="cm"># This is the RAG injection point.</span>
+    <span class="cm"># Claim + retrieved docs in one prompt.</span>
+    ev_text = <span class="st">"\n"</span>.join(
+        <span class="st">f"[{i+1}] {e['text'][:</span><span class="nm">400</span><span class="st">]}"</span>
+        <span class="kw">for</span> i, e <span class="kw">in</span> <span class="bi">enumerate</span>(evidence)
+    )
+    <span class="kw">return</span> (
+        <span class="st">f"CLAIM:\n{claim_text}\n\n"</span>
+        <span class="st">f"RETRIEVED EVIDENCE:\n{ev_text}"</span>
+    )
+
+<span class="kw">def</span> <span class="fn">score_claim</span>(
+    client, claim_text, evidence
+) -> dict:
+    response = client.chat.completions.create(
+        model=<span class="st">"gpt-4o-mini"</span>,
+        temperature=<span class="nm">0.0</span>,
+        response_format={
+            <span class="st">"type"</span>: <span class="st">"json_object"</span>
+        },
+        messages=[
+            {<span class="st">"role"</span>: <span class="st">"system"</span>,
+             <span class="st">"content"</span>: SYSTEM_PROMPT},
+            {<span class="st">"role"</span>: <span class="st">"user"</span>,
+             <span class="st">"content"</span>: build_user_prompt(
+                 claim_text, evidence)},
+        ],
+    )
+    <span class="kw">return</span> json.loads(
+        response.choices[<span class="nm">0</span>].message.content
+    )</pre>
+      </div>
+    </div>
+
+    <div>
+      <h3 style="margin-top:0;">Two-step decision rule</h3>
+      <div style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:8px;padding:10px 11px;font-size:8.5pt;line-height:1.65;color:#374151;">
+        <p style="margin-bottom:5px;font-weight:700;color:#92400E;font-size:7.5pt;text-transform:uppercase;letter-spacing:0.04em;">Step 1: claim text only</p>
+        <p style="margin-bottom:8px;">Does the claim contain at least one <em>concrete element</em>? A company-owned quantity, a named company deadline, or a completed named deal. If yes, <span class="badge badge-ws">well_substantiated</span>. If no, <span class="badge badge-wk">weakly_substantiated</span>. The retrieved evidence plays no role in this step.</p>
+        <p style="margin-bottom:5px;font-weight:700;color:#92400E;font-size:7.5pt;text-transform:uppercase;letter-spacing:0.04em;">Step 2: evidence check</p>
+        <p style="margin-bottom:0;">Does any evidence item name the company <strong>and</strong> the specific commitment <strong>and</strong> show it is false or walked back? If yes, <span class="badge badge-ct">contradicted</span>. Sector-wide criticism does not qualify. The bar is high by design.</p>
+      </div>
+
+      <h3 style="margin-top:10px;">Score bands (0 to 1)</h3>
+      <table style="margin-top:4px;">
+        <thead><tr><th>Range</th><th>Class</th><th>Signal</th></tr></thead>
+        <tbody>
+          <tr><td>0.05 to 0.14</td><td><span class="badge badge-ws">well_sub.</span></td><td>3+ concrete elements</td></tr>
+          <tr><td>0.15 to 0.39</td><td><span class="badge badge-ws">well_sub.</span></td><td>1 to 2 concrete elements</td></tr>
+          <tr><td>0.40 to 0.58</td><td><span class="badge badge-wk">weakly_sub.</span></td><td>0 concrete elements / pure aspiration</td></tr>
+          <tr><td>0.59 to 0.69</td><td><span class="badge badge-wk">weakly_sub.</span></td><td>Rule 4 exception applies</td></tr>
+          <tr><td>0.70 to 0.99</td><td><span class="badge badge-ct">contradicted</span></td><td>Evidence refutes specifically</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <hr style="margin:10px 0;" />
+  <h3>GreenSignal: materiality-adjusted final score</h3>
+
+  <div class="code-window">
+    <div class="code-chrome">
+      <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+      <span class="code-filename">gen_frontend_data.py</span>
+    </div>
+    <pre class="code-body">MATERIALITY = {
+    <span class="st">"net_zero"</span>:              <span class="nm">1.35</span>,  <span class="cm"># core climate commitment / highest reputational risk</span>
+    <span class="st">"scope_3"</span>:               <span class="nm">1.30</span>,  <span class="cm"># value-chain emissions / roughly 85% of total footprint</span>
+    <span class="st">"climate_lobbying"</span>:      <span class="nm">1.25</span>,  <span class="cm"># integrity signal: lobbying contradicts stated positions</span>
+    <span class="st">"methane"</span>:               <span class="nm">1.20</span>,  <span class="cm"># short-lived but potent / high regulatory attention</span>
+    <span class="st">"emissions_reduction"</span>:   <span class="nm">1.15</span>,  <span class="cm"># Scope 1 and 2</span>
+    <span class="st">"renewables_investment"</span>: <span class="nm">1.10</span>,
+    <span class="st">"biodiversity"</span>:          <span class="nm">1.05</span>,
+    <span class="st">"just_transition"</span>:       <span class="nm">1.00</span>,  <span class="cm"># baseline: no uplift applied</span>
+}
+
+base_score   = r[<span class="st">'predicted'</span>][<span class="st">'risk_score'</span>]
+multiplier   = MATERIALITY.get(category, <span class="nm">1.0</span>)
+green_signal = <span class="bi">round</span>(<span class="bi">min</span>(<span class="nm">1.0</span>, base_score * multiplier), <span class="nm">4</span>)</pre>
+  </div>
+
+  <div class="page-foot">
+    <span>Claimify ESG — Technical Report</span>
+    <span>Page 7 of 9</span>
+  </div>
+</section>
+
+
+<!-- ══ PAGE 9: Commitment Tracker ═══════════════ -->
+<section class="page">
+  <div class="stripe"></div>
+
+  <div class="sec" style="margin-top:4px;"><span class="sec-pill">06</span><h2 style="margin:0;">Commitment Tracker</h2></div>
+
+  <p>The Commitment Tracker answers a question the main pipeline does not: of the climate pledges companies made in 2021, how many have they actually kept? It reuses the same retrieval stack but runs it in reverse time: 2021 sustainability reports as input, 2023-2025 NGO evidence corpus as the judge.</p>
+
+  <p>The pipeline extracts 710 historical pledges from the 2021 reports, embeds them with the same SBERT model, retrieves the most relevant current evidence for each, and asks GPT-4o-mini to issue a gap verdict. Evidence from 2023-2025 is well-positioned to evaluate 2021 pledges; most of the intermediate deadlines have passed, and the NGO corpus contains direct assessments of company progress against named targets.</p>
+
+  <div class="two-col" style="margin-top:6px;">
+    <div>
+      <h3 style="margin-top:0;">Gap scoring</h3>
+      <div class="code-window">
+        <div class="code-chrome">
+          <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+          <span class="code-filename">scripts/run_gap_scoring.py</span>
+        </div>
+        <pre class="code-body"><span class="cm"># Same SBERT + cross-encoder retrieval</span>
+<span class="cm"># as the main pipeline.</span>
+<span class="cm"># Input: 2021 pledge</span>
+<span class="cm"># Evidence: 2023-2025 NGO corpus</span>
+
+VERDICTS = [
+    <span class="st">"fulfilled"</span>,           <span class="cm"># target met</span>
+    <span class="st">"partially_fulfilled"</span>,  <span class="cm"># progress, not complete</span>
+    <span class="st">"reversed"</span>,            <span class="cm"># abandoned or walked back</span>
+    <span class="st">"too_early"</span>,           <span class="cm"># deadline not yet reached</span>
+]
+
+<span class="cm"># Prompt instruction: if evidence is</span>
+<span class="cm"># sparse, prefer "too_early" over a</span>
+<span class="cm"># forced verdict. Use "reversed" if</span>
+<span class="cm"># company clearly retreated, even</span>
+<span class="cm"># without an explicit statement.</span></pre>
+      </div>
+
+      <h3 style="margin-top:8px;">710 pledges across 10 companies</h3>
+      <div class="vbar-wrap">
+        <div class="vbar-seg" style="background:#EF4444;width:36.6%;">260 reversed</div>
+        <div class="vbar-seg" style="background:#F59E0B;width:28.0%;">199 partial</div>
+        <div class="vbar-seg" style="background:#9CA3AF;width:34.9%;">248 too early</div>
+        <div class="vbar-seg" style="background:#10B981;width:0.5%;"></div>
+      </div>
+      <div style="font-size:7pt;color:#9CA3AF;margin-bottom:6px;">260 reversed / 199 partially fulfilled / 248 too early / 3 fulfilled</div>
+    </div>
+
+    <div>
+      <h3 style="margin-top:0;">Accountability score formula</h3>
+      <div class="code-window">
+        <div class="code-chrome">
+          <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+          <span class="code-filename">scripts/gen_tracker_data.py</span>
+        </div>
+        <pre class="code-body">CATEGORY_WEIGHT = {
+    <span class="st">"net_zero"</span>:   <span class="nm">2.0</span>,
+    <span class="st">"scope_3"</span>:    <span class="nm">1.8</span>,
+    <span class="st">"methane"</span>:    <span class="nm">1.4</span>,
+    <span class="st">"other"</span>:      <span class="nm">1.0</span>,
+}
+VERDICT_PENALTY = {
+    <span class="st">"reversed"</span>:            <span class="nm">1.0</span>,
+    <span class="st">"partially_fulfilled"</span>: <span class="nm">0.5</span>,
+    <span class="st">"fulfilled"</span>:           <span class="nm">0.0</span>,
+}
+
+<span class="kw">def</span> <span class="fn">accountability_score</span>(items):
+    <span class="cm"># 0 = all pledges reversed</span>
+    <span class="cm"># 1 = all pledges fulfilled</span>
+    <span class="cm"># weighted by category + confidence</span>
+    total_w = penalty_w = <span class="nm">0.0</span>
+    <span class="kw">for</span> r <span class="kw">in</span> scored:
+        w  = CATEGORY_WEIGHT.get(
+               r[<span class="st">"category"</span>], <span class="nm">1.0</span>)
+        wc = w * (r[<span class="st">"confidence"</span>] <span class="kw">or</span> <span class="nm">0.5</span>)
+        total_w   += wc
+        penalty_w += (
+            VERDICT_PENALTY[r[<span class="st">"verdict"</span>]]
+            * wc
+        )
+    <span class="kw">return</span> <span class="bi">round</span>(
+        <span class="nm">1.0</span> - penalty_w / total_w, <span class="nm">3</span>
+    )</pre>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:8px;">Pledge counts by company</h3>
+  <table>
+    <thead><tr><th>Company</th><th>Total</th><th>Reversed</th><th>Partial</th><th>Too early</th><th>Fulfilled</th></tr></thead>
+    <tbody>
+      <tr><td>Chevron</td><td>124</td><td>45</td><td>38</td><td>41</td><td>0</td></tr>
+      <tr><td>BP</td><td>117</td><td>43</td><td>36</td><td>38</td><td>0</td></tr>
+      <tr><td>Equinor</td><td>108</td><td>40</td><td>32</td><td>35</td><td>1</td></tr>
+      <tr><td>Shell</td><td>102</td><td>38</td><td>31</td><td>32</td><td>1</td></tr>
+      <tr><td>ConocoPhillips</td><td>85</td><td>31</td><td>26</td><td>27</td><td>1</td></tr>
+      <tr><td>ExxonMobil</td><td>51</td><td>19</td><td>16</td><td>16</td><td>0</td></tr>
+      <tr><td>Eni, Repsol, TotalEnergies, Occidental</td><td>123</td><td>44</td><td>20</td><td>59</td><td>0</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout-warn">
+    <p><strong>On the 3 fulfilled cases:</strong> The prompt is intentionally conservative about issuing a "fulfilled" verdict. You need positive evidence of completion, not just the absence of negative evidence. In practice most pledges made in 2021 that have passed their intermediate deadlines show up as "reversed" because that is what the 2023-2025 NGO evidence reports. This result reflects the evidence base, not a system artifact.</p>
+  </div>
+
+  <div class="page-foot">
+    <span>Claimify ESG — Technical Report</span>
+    <span>Page 8 of 9</span>
+  </div>
+</section>
+
+
+<!-- ══ PAGE 9: Evaluation and Deployment ════════ -->
+<section class="page">
+  <div class="stripe"></div>
+
+  <div class="sec" style="margin-top:4px;"><span class="sec-pill">07</span><h2 style="margin:0;">Evaluation</h2></div>
+
+  <p>The eval set is 60 claims hand-labelled by the author using the same rubric encoded in the system prompt. This tests whether the model applies the rubric consistently, not whether the rubric itself is the right one. Those are different questions and the second one is harder. The full accuracy history is shown below; the non-monotonic path (78% to 71% to 88%) is informative about which prompt changes helped and which caused regressions.</p>
+
+  <div class="two-col" style="margin-top:6px;">
+    <div>
+      <h3 style="margin-top:0;">Accuracy history (60-claim eval set)</h3>
+      <table>
+        <thead><tr><th>Iteration</th><th>Accuracy</th><th>What changed</th></tr></thead>
+        <tbody>
+          <tr><td>Baseline prompt</td><td>78.3%</td><td>Initial version</td></tr>
+          <tr><td>New evidence sources</td><td>71.7%</td><td>Regression: critical NGO evidence confused well/weakly split</td></tr>
+          <tr><td>Strengthen Rule 4</td><td>73.3%</td><td>Evidence must not affect the well/weakly decision</td></tr>
+          <tr><td>Few-shot examples added</td><td>83.3%</td><td>Edge-case examples in prompt for boundary claims</td></tr>
+          <tr><td>Rules 4f and 4g</td><td>88.3%</td><td>Dates alone not a concrete element; vague counts excluded</td></tr>
+          <tr><td><strong>PDF chunking + rebuild</strong></td><td><strong>86.7%</strong></td><td>1/60 drop after corpus restructure; within noise range</td></tr>
+        </tbody>
+      </table>
+
+      <div class="matrix" style="margin-top:10px;">
+        <div class="mx-corner"><span style="font-size:7pt;color:#9CA3AF;font-weight:600;">pred &#8594;</span></div>
+        <div class="mx-col-hdr">well</div>
+        <div class="mx-col-hdr">weakly</div>
+        <div class="mx-col-hdr">contra.</div>
+        <div class="mx-row-lbl">well_sub.</div>
+        <div class="mx-cell mx-tp">18</div><div class="mx-cell mx-fp">2</div><div class="mx-cell mx-zero">0</div>
+        <div class="mx-row-lbl">weakly_sub.</div>
+        <div class="mx-cell mx-fp">3</div><div class="mx-cell mx-tp">16</div><div class="mx-cell mx-fp">1</div>
+        <div class="mx-row-lbl">contradicted</div>
+        <div class="mx-cell mx-zero">0</div><div class="mx-cell mx-fp">2</div><div class="mx-cell mx-tp">18</div>
+      </div>
+      <div style="font-size:7pt;color:#9CA3AF;margin-top:3px;">52 / 60 correct / 86.7% / TP diagonal in green</div>
+    </div>
+
+    <div>
+      <h3 style="margin-top:0;">Where mistakes concentrate</h3>
+      <p style="font-size:8.8pt;">The well/weakly boundary is the hardest. Rule 4 exceptions, which demote claims containing numbers from external sources (EU targets, IPCC scenarios, third-party studies), frequently cause confusion when a claim mixes company and external numbers in the same sentence. The model struggles to determine whose number it is.</p>
+      <p style="font-size:8.8pt;margin-top:6px;">The <em>contradicted</em> class rarely misclassifies. Requiring evidence to name the company, the specific commitment, and show it is false prevents false positives at the cost of some false negatives. That is the right trade-off for a triage tool.</p>
+
+      <div class="callout-warn" style="margin-top:8px;">
+        <p><strong>Limitations:</strong> Single annotator, 60 claims, no inter-annotator agreement. The rubric encodes one interpretation of "substantiated". ESG analysts, regulators, and journalists would apply different standards. This tool is for triage and comparative analysis, not final determination.</p>
+      </div>
+
+      <h3 style="margin-top:8px;">Frontend views</h3>
+      <ul>
+        <li><strong>Claims</strong>: filter by company, category, and verdict; full evidence panel and decision trace per claim</li>
+        <li><strong>Compare</strong>: side-by-side across two companies in the same category</li>
+        <li><strong>Tracker</strong>: historical pledges with fulfilment verdicts and accountability score</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr style="margin:9px 0;" />
+  <div class="sec"><span class="sec-pill">08</span><h2 style="margin:0;">Deployment</h2></div>
+
+  <div class="ui-frame" style="margin-top:6px;">
+    <div class="ui-chrome">
+      <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+      <span class="ui-url">claimify-esg.vercel.app / Claims view / BP / Emissions Reduction / score 0.74</span>
+    </div>
+    <img src="../frontend/public/og-image.png" alt="Claimify ESG claims detail view" style="display:block;width:100%;" />
+  </div>
+
+  <div class="three-col" style="margin-top:8px;">
+    <div style="border:1px solid #E5E7EB;border-radius:7px;padding:9px 10px;">
+      <div style="font-size:7.5pt;font-weight:700;color:#1D4ED8;margin-bottom:3px;">Vercel (live)</div>
+      <div style="font-size:8pt;color:#374151;line-height:1.65;">Root: <code>frontend/</code><br/>Build: <code>npm run build</code><br/>Output: <code>dist/</code><br/>Push to main triggers deploy</div>
+    </div>
+    <div style="border:1px solid #E5E7EB;border-radius:7px;padding:9px 10px;">
+      <div style="font-size:7.5pt;font-weight:700;color:#374151;margin-bottom:3px;">Docker (self-host)</div>
+      <div style="font-size:8pt;color:#374151;line-height:1.65;"><code>node:20-slim</code> builds<br/><code>nginx:1.27-alpine</code> serves<br/>Exposed on port 80<br/><code>docker compose up</code></div>
+    </div>
+    <div style="border:1px solid #E5E7EB;border-radius:7px;padding:9px 10px;">
+      <div style="font-size:7.5pt;font-weight:700;color:#374151;margin-bottom:3px;">Python pipeline</div>
+      <div style="font-size:8pt;color:#374151;line-height:1.65;">Offline, not at serve time<br/><code>OPENAI_API_KEY</code><br/><code>GUARDIAN_API_KEY</code><br/>Re-run for new reports</div>
+    </div>
+  </div>
+
+  <div class="page-foot">
+    <span>Claimify ESG — Technical Report / MIT License / claimify-esg.vercel.app</span>
+    <span>Page 9 of 9</span>
+  </div>
+</section>
+
+</body>
+</html>
