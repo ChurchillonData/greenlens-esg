@@ -40,8 +40,7 @@ data/eval/rationale_sample.txt
 *.jpeg
 *.jpg
 
-# Generated at build time
-frontend/public/og-image.png
+# Generated at build time (og-image.png is committed directly)
 
 # Logs
 *.log
